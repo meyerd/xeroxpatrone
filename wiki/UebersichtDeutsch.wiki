@@ -14,7 +14,7 @@ Dann die [http://xeroxpatrone.googlecode.com/files/xeroxpatrone_bin_rel.zip Soft
 Mit dem Tool kann man nun den EEPROM auf dem Chip in der Kartusche beschreiben und auslesen.
 
 == Das ist ja viel zu kompliziert. ==
-Ja. Leider gehts nicht einfacher. Eventuell habe ich Lust Ihnen zu helfen und resette die Chips für sie. Kontaktieren sie mich einfach per EMail.
+Ja. Leider gehts nicht einfacher. Eventuell habe ich Lust Ihnen zu helfen und resette die Chips für sie. Kontaktieren sie mich einfach per EMail (Adresse finden sie unter den Kontaktdetails (Project Home->People->Owner)).
 
 == Technische Details? ==
 Der EEPROM ist ein `M24C02` serieller i2c mit 2Kbit Speicher. Um sich selbst was zu hacken kann man [http://xeroxpatrone.googlecode.com/files/eeprom_chip.png hierauf] zurückgreifen.
