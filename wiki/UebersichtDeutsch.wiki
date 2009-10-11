@@ -23,3 +23,5 @@ Es wurde auch berichtet, dass der "JDM-Programmer" für Lesen und Schreiben des 
 
 == EEPROM roms ==
 [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Hier] gibt es einige EEPROM dumps, die ich ausgelesen habe. Diese können entweder verwendet werden um alte Kartuschen wieder "aufzufrischen" oder um weiter Forensik bezüglich des Inhalts zu betreiben. Sollten sich Informationen bezüglich des Inhalts und der Kodierung der Dumps ergeben, freue ich mich natürlich über jede Email.
+
+[http://code.google.com/p/xeroxpatrone/people/list Email Adressen]
