@@ -6,6 +6,8 @@ Hier finden Sie ein Tool zum resetten ihrer Xerox Phaser 6130 Tonerkartuschen.
 == Welche Drucker werden unterstützt? ==
 Es sollte definitv mit dem Xerox Phaser 6130 funktionieren. Xerox Phaser 6125 und Dell 1320c sollten auch funktionieren, da diese die gleichen Kartuschen verwenden.
 
+Xerox Phaser 6140 funktionert auch. EEPROM Dumps befinden sich bei den Downloads.
+
 == Wie geht das? ==
 Man benötigt für das Resetten einen i2c Adapter für den PC. Zum beispiel so einen [http://www.shop.robotikhardware.de/shop/catalog/product_info.php?products_id=68 so einen]. Auf der Seite kann man auch die Schaltpläne herunterladen und sich selbst einen bauen.
 
