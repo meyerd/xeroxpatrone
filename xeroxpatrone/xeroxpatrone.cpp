@@ -19,6 +19,9 @@ namespace po = boost::program_options;
 // SetCommMask CTS DSR
 // EscapeCommm RTS DTR
 
+// #define ADAPTER_TYPE 1 // default adapter with active power source and inverters
+#define ADAPTER_TYPE 2 // adapter type with usb power and z-diodes
+
 DCB dcb;
 HANDLE hCom;
 BOOL fSuccess;
@@ -118,6 +121,7 @@ int main(int argc, char* argv[])
 		writemode = true;
 	}
 
+	readmode = true;
 	if((readmode && writemode) || (!readmode && !writemode && !analyzemode)) {
 		fprintf(stderr, "either read, write or analyze mode has to be selected\n\nuse: %s --help for help\n", argv[0]);
 		exit(1);
@@ -194,24 +198,44 @@ int main(int argc, char* argv[])
 	ClearCommError(hCom, &errors, &stat);
 	ClearCommBreak(hCom);
 
-	set_sda(1);
-	set_scl(1);
-
 	int buf = 0;
-	int devadrr = (int)(devadr + 1);
-	int devadrw = (int)devadr;
+	int devadrr;
+	devadrr = (devadr + 1);
+	int devadrw;
+	devadrw = devadr;
+
+	/* Sleep(1000);
+
+	int i = 0;
+	while (true) {
+		i = (i + 1) % 2;
+		set_sda(i);
+		printf("%i\n", i);
+		Sleep(2000);
+	} */
+
+	//int j = 0;
+	//for(int i = 0; i < 20; i++) {
+	//	j = (j + 1) % 2;
+	//	set_sda(j);
+	//	set_scl(j);
+	//	delay();
+	//}
+
+	set_scl(1);
+	set_sda(1);
 
 	if(readmode) {
 		// read
 		// int devadrr = 0xA1; // 1010 000 1
 		// int devadrw = 0xA0; // 1010 000 0
 		debugout("init...\n");
-		stop();
+		// stop();
 
 		debugout("start...\n");
 		start();
 
-		debugout("send adr: 0x%x\n", devadrw);
+		debugout("send adr: 0x%x (%i)\n", devadrw, devadrw);
 		sendbyte(devadrw);
 
 		delay();
@@ -373,14 +397,17 @@ void stop() {
 
 int checkack() {
 	int ack = 0;
+	delay();
 	set_sda(1);
 	set_scl(0);
 	delay();
 	set_scl(1);
+	delay();
 	int ret = get_sda();
 	if(ret == 0)
 		ack = 1;
 	delay();
+	set_scl(0);
 	return ack;
 }
 
@@ -483,10 +510,12 @@ void delay() {
 void set_sda(int out) {
 	// DTR
 	if(out == 1) {
+		debugout("set_sda(1)\n");
 		if(!EscapeCommFunction(hCom, SETDTR)) {
 			printf("Set DTR 1 failed\n");
 		}
 	} else {
+		debugout("set_sda(0)\n");
 		if(!EscapeCommFunction(hCom, CLRDTR)) {
 			printf("Set DTR 0 failed\n");
 		}
@@ -496,17 +525,36 @@ void set_sda(int out) {
 void set_scl(int out) {
 	// RTS
 	if(out == 1) {
-		EscapeCommFunction(hCom, SETRTS);
+		debugout("set_scl(1)\n");
+		if(!EscapeCommFunction(hCom, SETRTS)) {
+			printf("Set RTS 1 failed\n");
+		}
 	} else {
-		EscapeCommFunction(hCom, CLRRTS);
+		debugout("set_scl(0)\n");
+		if(!EscapeCommFunction(hCom, CLRRTS)) {
+			printf("Set RTS 0 failed\n");
+		}
 	}
 }
 
 int get_sda() {
+#if ADAPTER_TYPE == 1
 	// CTS eigentlich vertauscht!
 	DWORD status = 0;
 	if(GetCommModemStatus(hCom, &status)) {
 		if(status & MS_DSR_ON) {
+				return 1;
+		} else {
+			return 0;
+		}
+	} else {
+		printf("error get_sda()\n");
+		return 0;
+	}
+#else if ADAPTER_TYPE == 2
+	DWORD status = 0;
+	if(GetCommModemStatus(hCom, &status)) {
+		if(status & MS_CTS_ON) {
 			return 1;
 		} else {
 			return 0;
@@ -515,9 +563,10 @@ int get_sda() {
 		printf("error get_sda()\n");
 		return 0;
 	}
+#endif
 }
-
 int get_scl() {
+#if ADAPTER_TYPE == 1
 	// DSR eigentlich vertauscht!
 	DWORD status = 0;
 	if(GetCommModemStatus(hCom, &status)) {
@@ -530,6 +579,9 @@ int get_scl() {
 		printf("error get_scl()\n");
 		return 0;
 	}
+#else if ADAPTER_TYPE == 2
+		return 1;
+#endif
 }
 
 void printch(char* buf, int start, int len) {
