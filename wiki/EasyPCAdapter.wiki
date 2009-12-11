@@ -6,4 +6,6 @@ The whole schematic is stolen from [http://www.lancos.com/webtherm.html here] an
 
 The parts are really cheap to buy for the z-Diodes you can use for example MMSZ5V1 or 1N751ATR 5,1V 500mW.
 
+= Schematic =
+
 http://xeroxpatrone.googlecode.com/files/schaltplan.png
