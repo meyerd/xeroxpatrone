@@ -121,7 +121,6 @@ int main(int argc, char* argv[])
 		writemode = true;
 	}
 
-	readmode = true;
 	if((readmode && writemode) || (!readmode && !writemode && !analyzemode)) {
 		fprintf(stderr, "either read, write or analyze mode has to be selected\n\nuse: %s --help for help\n", argv[0]);
 		exit(1);
