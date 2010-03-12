@@ -1,0 +1,89 @@
+#summary available and missing eeprom dumps.
+
+= EEPROMS available =
+
+*Xerox Phaser 6130*
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Black 2500 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Cyan 1900 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Magenta 1900 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Yellow 1900 Pages]
+
+*Xerox Phaser 6140*
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Black 1000 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Cyan 1000 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Magenta 1000 Pages]
+[http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Yellow 1000 Pages]
+
+= EEPROMS still missing =
+
+As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
+
+*Xerox Phaser 6140*
+Black 2600 Pages
+Cyan 2000 Pages
+Magenta 2000 Pages
+Yellow 2000 Pages
+
+*Xerox Phaser 6125*
+Black 2000 Pages
+Cyan 1000 Pages
+Magenta 1000 Pages
+Yellow 1000 Pages
+
+*Xerox Phaser 6128*
+Black 3100 Pages
+Cyan 2500 Pages
+Magenta 2500 Pages
+Yellow 2500 Pages
+
+*DELL 1320c*
+Black 2000 Pages
+Cyan 2000 Pages
+Magenta 2000 Pages
+Yellow 2000 Pages
+
+Black 1000 Pages
+Cyan 1000 Pages
+Magenta 1000 Pages
+Yellow 1000 Pages
+
+*DELL 2130cn*
+Black 2500 Pages
+Cyan 2500 Pages
+Magenta 2500 Pages
+Yellow 2500 Pages
+
+Black 1000 Pages
+Cyan 1000 Pages
+Magenta 1000 Pages
+Yellow 1000 Pages
+
+*DELL 2135cn*
+Black 2500 Pages
+Cyan 2500 Pages
+Magenta 2500 Pages
+Yellow 2500 Pages
+
+Black: 1000 Pages
+Cyan 1000 Pages
+Magenta 1000 Pages
+Yellow 1000 Pages
+
+*Fuji Xerox DocuPrint C1110*
+Black 2000 Pages
+Cyan 2000 Pages
+Magenta 2000 Pages
+Yellow 2000 Pages
+
+*Fuji Xerox DocuPrint C2120*
+Black 3000 Pages
+Cyan 3000 Pages
+Magenta 3000 Pages
+Yellow 3000 Pages
+
+*Fuji Xerox DocuPrint C1190 FS*
+Black 3000 Pages
+Cyan 3000 Pages
+Magenta 3000 Pages
+Yellow 3000 Pages
+
