@@ -8,4 +8,4 @@ You can use 6130 cartridges in your 6140 printer and vice versa. Xerox introduce
 
 Read all about it, illustrated with pictures, [http://xeroxpatrone.googlecode.com/files/Cartridges%20Xerox%20Phaser.pdf here].
 
-Of course a new EEPROM has also to be flashed to match the target printer type.
+Of course a new [EepromList EEPROM] has also to be flashed to match the target printer type.
