@@ -1,4 +1,4 @@
-#Really easy to build PC Adapter
+#summary Really easy to build PC Adapter
 
 = Howto? =
 
