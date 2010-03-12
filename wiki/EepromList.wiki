@@ -10,6 +10,8 @@
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Magenta 1900 Pages]
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Yellow 1900 Pages]
 
+  * [http://xeroxpatrone.googlecode.com/files/6130_ImageUnit_1073pages.bin Imaging Unit (already run for 1073 Pages)]
+
 *Xerox Phaser 6140*
 
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Black 1000 Pages]
