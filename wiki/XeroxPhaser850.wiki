@@ -1,5 +1,5 @@
+#summary Information page about the Xerox Phaser 850
 #labels Phase-Support
-#Information page about the Xerox Phaser 850
 
 = Phaser 850 =
 
