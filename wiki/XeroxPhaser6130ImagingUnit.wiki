@@ -1,0 +1,9 @@
+#summary Xerox Phaser 6130 Imaging Unit EEPROM
+
+= What's this? =
+
+The imaging unit of the Xerox 6130 printer also has a page counter built in. The Information is stored in a EEPROM similar to that in the cartridges. 
+
+Information about how to read this information out can be found [http://xeroxpatrone.googlecode.com/files/6130_ImageUnit_Connector.pdf here].
+
+A EEPROM dump is available [http://xeroxpatrone.googlecode.com/files/6130_ImageUnit_1073pages.bin here].
