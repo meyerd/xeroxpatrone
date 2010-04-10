@@ -19,6 +19,20 @@
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Magenta 1000 Pages]
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Yellow 1000 Pages]
 
+*DELL 1320c*
+
+  * [http://xeroxpatrone.googlecode.com/files/dell_1320_black_2000_pages_full.bin Black 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/dell_1320_cyan_2000_pages_full.bin Cyan 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/dell_1320_magenta_2000_pages_full.bin Magenta 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/dell_1320_yellow_2000_pages_full.bin Yellow 2000 Pages]
+
+*Fuji Xerox DocuPrint C1110*
+
+  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_black.bin Black 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_cyan.bin Cyan 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_magenta.bin Magenta 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_yellow.bin Yellow 2000 Pages]
+
 = EEPROMS still missing =
 
 As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
@@ -45,11 +59,6 @@ As you see the list of missing EEPROM dumps is still very long. Please send me y
   * Yellow 2500 Pages
 
 *DELL 1320c*
-
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_black_2000_pages_full.bin Black 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_cyan_2000_pages_full.bin Cyan 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_magenta_2000_pages_full.bin Magenta 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_yellow_2000_pages_full.bin Yellow 2000 Pages]
 
   * Black 1000 Pages
   * Cyan 1000 Pages
@@ -79,13 +88,6 @@ As you see the list of missing EEPROM dumps is still very long. Please send me y
   * Cyan 1000 Pages
   * Magenta 1000 Pages
   * Yellow 1000 Pages
-
-*Fuji Xerox DocuPrint C1110*
-
-  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_black.bin Black 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_cyan.bin Cyan 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_magenta.bin Magenta 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_yellow.bin Yellow 2000 Pages]
 
 *Fuji Xerox DocuPrint C2120*
 
