@@ -19,6 +19,11 @@
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Magenta 1000 Pages]
   * [http://xeroxpatrone.googlecode.com/files/eeprom_dumps.zip Yellow 1000 Pages]
 
+  * [http://xeroxpatrone.googlecode.com/files/6140_black_nonorg_korea_2600_pages.bin Black 2600 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/6140_cyan_nonorg_korea_2000_pages.bin Cyan 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/6140_magenta_nonorg_korea_2000_pages.bin Magenta 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/6140_yellow_nonorg_korea_2000_pages.bin Yellow 2000 Pages]
+
 *DELL 1320c*
 
   * [http://xeroxpatrone.googlecode.com/files/dell_1320_black_2000_pages_full.bin Black 2000 Pages]
@@ -36,13 +41,6 @@
 = EEPROMS still missing =
 
 As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
-
-*Xerox Phaser 6140*
-
-  * Black 2600 Pages
-  * Cyan 2000 Pages
-  * Magenta 2000 Pages
-  * Yellow 2000 Pages
 
 *Xerox Phaser 6125*
 
