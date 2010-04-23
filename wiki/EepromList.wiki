@@ -26,10 +26,16 @@
 
 *DELL 1320c*
 
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_black_2000_pages_full.bin Black 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_cyan_2000_pages_full.bin Cyan 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_magenta_2000_pages_full.bin Magenta 2000 Pages]
-  * [http://xeroxpatrone.googlecode.com/files/dell_1320_yellow_2000_pages_full.bin Yellow 2000 Pages]
+  * UK/European Version
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320_black_2000_pages_full.bin Black 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320_cyan_2000_pages_full.bin Cyan 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320_magenta_2000_pages_full.bin Magenta 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320_yellow_2000_pages_full.bin Yellow 2000 Pages]
+  * US Version
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_black.bin Black 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_cyan.bin Cyan 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_magenta.bin Magenta 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_yellow.bin Yellow 2000 Pages]
 
 *Fuji Xerox DocuPrint C1110*
 
