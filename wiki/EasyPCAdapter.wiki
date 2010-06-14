@@ -2,14 +2,22 @@
 
 = Howto? =
 
-The whole schematic is stolen from [http://www.lancos.com/webtherm.html here] and [http://www.riccibitti.com/pc_therm.htm here]. Download the simplified schematics with usb-power [http://xeroxpatrone.googlecode.com/files/schaltplan.png here].
+The whole schematic is stolen from [http://www.lancos.com/webtherm.html here] and [http://www.riccibitti.com/pc_therm.htm here]. Download the simplified schematics with usb-power [http://xeroxpatrone.googlecode.com/files/easy_adapter.png here].
 
 The parts are really cheap to buy for the z-Diodes you can use for example MMSZ5V1 or 1N751ATR 5,1V 500mW.
+
+The USB connection is only used to provide power to the EEPROM chip. The Data flows still through the RS232 connection.
 
 = EEPROM Pinout =
 
 http://xeroxpatrone.googlecode.com/files/eeprom_chip.png
 
 = Schematic =
+
+Download [http://xeroxpatrone.googlecode.com/files/easy_adapter.png png version], [http://xeroxpatrone.googlecode.com/files/easy_adapter.pdf pdf version].
+
+http://xeroxpatrone.googlecode.com/files/easy_adapter.png
+
+= Schematic (old) =
 
 http://xeroxpatrone.googlecode.com/files/schaltplan.png
