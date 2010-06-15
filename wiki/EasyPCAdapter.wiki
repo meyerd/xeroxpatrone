@@ -1,4 +1,5 @@
 #summary Really easy to build PC Adapter
+#labels Featured
 
 = Howto? =
 
@@ -18,8 +19,8 @@ http://xeroxpatrone.googlecode.com/files/eeprom_chip.png
 
 Download [http://xeroxpatrone.googlecode.com/files/easy_adapter.png png version], [http://xeroxpatrone.googlecode.com/files/easy_adapter.pdf pdf version].
 
-http://xeroxpatrone.googlecode.com/files/easy_adapter.png
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/easy_adapter.png" width="80%">
 
 = Schematic (old) =
 
-http://xeroxpatrone.googlecode.com/files/schaltplan.png
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/schaltplan.png" width=80%">
