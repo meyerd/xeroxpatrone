@@ -44,6 +44,8 @@
   * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_magenta.bin Magenta 2000 Pages]
   * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_yellow.bin Yellow 2000 Pages]
 
+  * [http://xeroxpatrone.googlecode.com/files/C1110%20new%20image%20unit.bin Imaging Unit EEPROM]
+
 *Xerox Phaser 6125*
   * UK/GB Version (not interchangeable with european version)
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20GB%202000%20black%20april10.bin Black 2000 Pages]
