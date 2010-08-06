@@ -1,0 +1,7 @@
+#summary Fuji Xerox DocuPrint C1110 Imaging Unit
+
+= What's this? =
+
+The Imaging Unit of the C1110 Printer contains a  EEPROM which also counts the pages. The chip can be connected the same way as the [http://code.google.com/p/xeroxpatrone/wiki/XeroxPhaser6130ImagingUnit Xerox Phaser 6130 Imaging Unit].
+
+A EEPROM dump to reset the page counters is available [http://xeroxpatrone.googlecode.com/files/C1110%20new%20image%20unit.bin here].
