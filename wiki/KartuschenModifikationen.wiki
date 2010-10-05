@@ -1,6 +1,6 @@
-#summary Nich-Original Kartuschen verwenden
+#summary Nicht-Original Kartuschen verwenden
 
 = Um was geht es hier? =
-Man kann auch Kartuschen von anderen, kompatiblen Druckern verwenden, falls diese grade zur Hand, oder günstiger zu bekommen sind. Wie das ganze funktioniert in einer bebilderten Anleitung [http://xeroxpatrone.googlecode.com/files/Kartuschen%20Xerox%20Phaser.pdf hier].
+Man kann auch Kartuschen von anderen, kompatiblen Druckern verwenden, falls diese grade zur Hand, oder günstiger zu bekommen sind. Wie das ganze funktioniert in einer bebilderten Anleitung [http://xeroxpatrone.googlecode.com/files/Kartuschen%20Xerox%20Phaser%20Update09-2010.pdf hier].
 
 Natürlich muss dann auch noch ein passendes [EepromList EEPROM] geflasht werden. Ich freue mich auch jeder Zeit über die Einsendungen noch fehlender EEPROMs der anderen Drucker.
