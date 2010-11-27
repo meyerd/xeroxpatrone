@@ -19,7 +19,7 @@ Alternativ kann man auch diesen sehr einfachten Adapter bauen (was ich empfehler
 
 Für die Verbindung zwischen Adapter und Chip-Platine kann man zum Beispiel den Stecker Lumberg 302299 04 K01 verwenden. [http://xeroxpatrone.googlecode.com/files/Chip_Stecker.pdf Hier] gibt es dazu noch Details und Bilder zum Nachlesen.
 
-Dann die [http://xeroxpatrone.googlecode.com/files/xeroxpatrone_bin_rel-z-diode.zip Software] herunterladen (binär aktuell nur für Windows). Oder selbst kompilieren. Oder für ein eigenes Tool aus dem Sourcecode klauen.
+Dann die [http://xeroxpatrone.googlecode.com/files/xeroxpatrone_bin_rel-z-diode_r48.zip Software] herunterladen (binär aktuell nur für Windows). Oder selbst kompilieren. Oder für ein eigenes Tool aus dem Sourcecode klauen.
 
 Mit dem Tool kann man nun den EEPROM auf dem Chip in der Kartusche beschreiben und auslesen.
 
