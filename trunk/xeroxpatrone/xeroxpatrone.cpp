@@ -332,7 +332,7 @@ int main(int argc, char* argv[])
 		}
 		printf("writing 256 bytes: \n");
 
-		for(int j = 0; j < 256; j+=16) {
+		for(int j = 0; j < 256; j+=8) {
 			address = j;
 			debugout("init...\n");
 			stop();
@@ -354,7 +354,7 @@ int main(int argc, char* argv[])
 
 			int sendbuf = 0;
 
-			for(int i = 0; i < 16; i++) {
+			for(int i = 0; i < 8; i++) {
 				sendbuf = 0;
 				fread_s(&sendbuf, 1, 1, 1, fp);
 				printf("%02x ", sendbuf);
