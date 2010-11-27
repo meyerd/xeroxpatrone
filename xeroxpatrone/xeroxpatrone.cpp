@@ -11,10 +11,10 @@
 #include <iostream>
 #include <string>
 
-#include "boost/program_options.hpp"
+#include "OptionParser.h"
 
 using namespace std;
-namespace po = boost::program_options;
+using namespace optparse;
 
 // SetCommMask CTS DSR
 // EscapeCommm RTS DTR
@@ -81,64 +81,71 @@ int main(int argc, char* argv[])
 	bool readmode = false;
 	bool writemode = false;
 	bool analyzemode = false;
+	bool helpmode = false;
 	string filename = "";
 	int comport = 1;
 	int devadr = 0xA0;
+
+	const string usage = "Usage: xeroxpatrone -c <Com port number> -a <Device address> [-r <output file> | -w <input file>]\n"
+						 "	where the com port number is between 1 and 9\n"
+						 "	the device address must be given with the r/w bit set to 0\n"
+						 "		e.g.: 1010 000 0 = 0xA0 = 160\n"
+						 "	either the -r or the -w command can be given for \n"
+						 "	either reading the whole 265 * 8 Bits of EEPROM content\n"
+						 "	265 * 8 Bits of EEPROM content to file or writing \n"
+						 "	the whole EEPROM from file\n\n"
+						 "	example: xeroxpatrone -c 1 -a 160 -r content.bin\n"
+						 "		reads the eeprom to file content.bin\n";
+
+	OptionParser parser = OptionParser()
+    .usage(usage);
+
+	parser.set_defaults("readmode", "0");
+	parser.set_defaults("writemode", "0");
+	parser.set_defaults("analyzemode", "0");
+	//parser.set_defaults("helpmode", "0");
+	/* parser.set_defaults("comport", "1");
+	parser.set_defaults("devadr", "0xA0"); */
+
+	parser.add_option("-r", "--read") .action("store_true") .dest("readmode") .help("read from the EEPROM 265*8 bits to <file>");
+	parser.add_option("-w", "--write") .action("store_true") .dest("writemode") .help("write the EEPROM from <file>");
+	parser.add_option("--analyze") .action("store_true") .dest("analyzemode") .help("analyze a dumped EEPROM file");
+	parser.add_option("-c", "--comport") .action("store") .type("int") .dest("comport") .set_default(1) .help("com port number between 1 and 9\n\tdefault: %default");
+	parser.add_option("-a", "--address") .action("store") .type("int") .dest("devadr") .set_default(160) .help("com port number between 1 and 9\n\tdefault: %default (0xA0)");
+	// parser.add_option("-h", "--help") .action("store_true") .dest("helpmode") .help("this help message");
+
+	Values& options = parser.parse_args(argc, argv);
+	vector<string> args = parser.args();
 	
-	po::options_description desc("Allowed options");
-	desc.add_options()
-		("help", "this help message")
-		("comport,c", po::value<int>(), "com port number between 1 and 9\n\tdefault: 1")
-		("address,a", po::value<int>(), "the EEPROMs device address with the r/w bit set to 0\n\n\t4 bit device type|3 bit device address|1 bit r/w bit\n\te.g.: 1010 000 0 = 0xA0 = 160\n\tdefault: 0xA0")
-		("read,r", "read from the EEPROM 265*8 bits to <file>")
-		("write,w", "write the EEPROM from <file>")
-		("analyze", "analyze a dumped EEPROM file")
-		("file", po::value<string>(), "the file to read from or write to\n\t(warning: existing files will be overwritten without prompt)")
-	;
+	helpmode = options.get("helpmode");
+	readmode = options.get("readmode");
+	writemode = options.get("writemode");
+	analyzemode = options.get("analyzemode");
 
-	po::positional_options_description p;
-	p.add("file", -1);
+	comport = (int)options.get("comport");
+	devadr = (int)options.get("devadr");
 
-	po::variables_map vm;
-	po::store(po::command_line_parser(argc, argv).
-          options(desc).positional(p).run(), vm);
-	po::notify(vm);    
-
-	if (vm.count("help")) {
-		cerr << desc << "\n";
+	/* if (helpmode) {
+		
 		cerr << "\nexample: xeroxpatrone -c 1 -a 160 -r content.bin\n\nThe Xerox Phase 6130 cardridges have exacly this eeprom address (0xA0)\nand a size of 8*256 bytes\n";
 		return 1;
-	}
-
-	if(vm.count("analyze")) {
-		analyzemode = true;
-	}
-
-	if(vm.count("read")) {
-		readmode = true;
-	}
-	if(vm.count("write")) {
-		writemode = true;
-	}
+	} */
 
 	if((readmode && writemode) || (!readmode && !writemode && !analyzemode)) {
 		fprintf(stderr, "either read, write or analyze mode has to be selected\n\nuse: %s --help for help\n", argv[0]);
 		exit(1);
 	}
 
-	if(vm.count("file")) {
-		filename = vm["file"].as<string>();
-	} else {
+	if(args.size() <= 0) {
 		fprintf(stderr, "no file specified\n");
+		return 1;
 	}
 
-	if(vm.count("comport")) {
-		comport = vm["comport"].as<int>();
-	}
+	filename = args.front();
 
-	if(vm.count("address")) {
-		devadr = vm["address"].as<int>();
-	}
+	cout << "filename: " << filename << endl;
+	cout << "comport: " << comport << endl;
+	cout << "devadr: " << devadr << endl;
 
 	if(analyzemode) {
 		return analyze_file(filename);
