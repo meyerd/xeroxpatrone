@@ -31,73 +31,31 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
 
   wxStaticText* xChooseText = new wxStaticText(this, wxID_ANY, _T("Choose Adapter Type:"), wxPoint(5, 5), wxSize(390, 25));
 
-  wxArrayString xAdapterStrArray;
-  ProgrammingAdapter* pUsbAdapter = new UsbAdapter();
-  vAdapters.push_back(pUsbAdapter);
-  xAdapterStrArray.Add(pUsbAdapter->GetName());
-//#ifdef OS_WINDOWS
-  ProgrammingAdapter* pAdapter = new SerialAdapterV2();
-  vAdapters.push_back(pAdapter);
-  xAdapterStrArray.Add(pAdapter->GetName());
-  pAdapter = new SerialAdapterV1();
-  vAdapters.push_back(pAdapter);
-  xAdapterStrArray.Add(pAdapter->GetName());
-//#endif
-  wxChoice *xAdapterChooser = new wxChoice(this, ID_MAINPANEL_choice, wxPoint(5, 30), wxSize(390, 30), xAdapterStrArray);
+  wxChoicebook* xAdapterChoiceBook = new wxChoicebook(this, wxID_ANY, wxPoint(5, 30), wxSize(390, 450));
+
+  UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
+
+  SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  xAdapterChoiceBook->AddPage(xCOMv2Page, xCOMv2Page->GetAdapterName(), false);
+
+  SerialAdapterV1* xCOMv1Page = new SerialAdapterV1((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  xAdapterChoiceBook->AddPage(xCOMv1Page, xCOMv1Page->GetAdapterName(), false);
+
 
   /* wxArrayString xEEPROMType;
   xEEPROMType.Add(_T("24c02"));
   xEEPROMType.Add(_T("24c04")); */
-
-  wxChoicebook* xModeChoiceBook = new wxChoicebook(this, wxID_ANY, wxPoint(5, 65), wxSize(390, 450));
-
-  iSelectedAdapter = 0;
-
-  wxPanel* xWritePage = new wxPanel(xModeChoiceBook);
-  wxStaticText* xWritePageText = new wxStaticText(xWritePage, wxID_ANY, _T("Write EEPROM"), wxPoint(5, 5), wxSize(380, 25));
-  // pWriteOptionsPanel = ((UsbAdapter*)pUsbAdapter)->GetOptionControls(xWritePage, wxPoint(5, 30));
-
-  wxPanel* xReadPage = new wxPanel(xModeChoiceBook);
-  wxStaticText* xReadPageText = new wxStaticText(xReadPage, wxID_ANY, _T("Read EEPROM"), wxPoint(5, 5), wxSize(380, 25));
-  // pReadOptionsPanel = ((UsbAdapter*)pUsbAdapter)->GetOptionControls(xReadPage, wxPoint(5, 30));
-
-  xModeChoiceBook->AddPage(xWritePage, _T("Write"), true);
-  xModeChoiceBook->AddPage(xReadPage, _T("Read"), false);
 }
 
 
 MainPanel::~MainPanel() {
-    for(vector<ProgrammingAdapter*>::iterator it = vAdapters.begin(); it != vAdapters.end(); ++it) {
-        SAFE_DELETE((*it));
-    }
-    vAdapters.clear();
+
 }
 
 void MainPanel::OnChoice(wxCommandEvent& event) {
-    int iSelection = event.GetInt();
-    wxLogMessage(_T("Selected Adapter: %s"), vAdapters[iSelection]->GetName().c_str());
-    iSelectedAdapter = iSelection;
-    /* if(pReadOptionsPanel) {
-        pReadOptionsPanel->Destroy();
-    }
-    if(pWriteOptionsPanel) {
-        pWriteOptionsPanel->Destroy();
-    }
-    if(vAdapters[iSelection]->GetType() == USB) {
-        UsbAdapter* pAdapter = (UsbAdapter*)vAdapters[iSelection];
-        pWriteOptionsPanel = pAdapter->GetOptionControls(xWritePage, wxPoint(5, 30));
-        pReadOptionsPanel = pAdapter->GetOptionControls(xReadPage, wxPoint(5, 30));
-    } else if(vAdapters[iSelection]->GetType() == COMv1) {
-        SerialAdapterV1* pAdapter = (SerialAdapterV1*)vAdapters[iSelection];
-        pWriteOptionsPanel = pAdapter->GetOptionControls(xWritePage, wxPoint(5, 30));
-        pReadOptionsPanel = pAdapter->GetOptionControls(xReadPage, wxPoint(5, 30));
-    } else if(vAdapters[iSelection]->GetType() == COMv2) {
-        SerialAdapterV2* pAdapter = (SerialAdapterV2*)vAdapters[iSelection];
-        pWriteOptionsPanel = pAdapter->GetOptionControls(xWritePage, wxPoint(5, 30));
-        pReadOptionsPanel = pAdapter->GetOptionControls(xReadPage, wxPoint(5, 30));
-    } */
 }
 
 BEGIN_EVENT_TABLE(MainPanel, wxPanel)
-  EVT_CHOICE(ID_MAINPANEL_choice, MainPanel::OnChoice)
+  // EVT_CHOICE(ID_MAINPANEL_choice, MainPanel::OnChoice)
 END_EVENT_TABLE()

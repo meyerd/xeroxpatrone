@@ -33,15 +33,12 @@
 
 class SerialAdapterV2 : public ProgrammingAdapter {
   public:
-	SerialAdapterV2();
+	SerialAdapterV2(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
 	~SerialAdapterV2();
 
 	bool Init();
-	wxPanel* GetOptionControls(wxPanel* pParent, const wxPoint& pos = wxPoint(0,0));
 
   private:
-
-    wxPanel* m_myPanel;
 };
 
 #endif /* _SERIALADAPTERV2_H_ */

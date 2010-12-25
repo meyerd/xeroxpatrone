@@ -24,24 +24,24 @@
 
 #include "programmingadapter.h"
 
-ProgrammingAdapter::ProgrammingAdapter() {
+ProgrammingAdapter::ProgrammingAdapter(wxPanel* pPanel, const wxPoint& pos) : wxPanel(pPanel, wxID_ANY, pos) {
 }
 
 ProgrammingAdapter::~ProgrammingAdapter() {
 }
 
-const wxString ProgrammingAdapter::GetName() {
+const wxString ProgrammingAdapter::GetAdapterName() {
   return m_xsName;
 }
 
-void ProgrammingAdapter::SetName(const wxString& xsName) {
+void ProgrammingAdapter::SetAdapterName(const wxString& xsName) {
   m_xsName = xsName;
 }
 
-ProgrammingAdapterType ProgrammingAdapter::GetType() {
+ProgrammingAdapterType ProgrammingAdapter::GetAdapterType() {
     return m_eType;
 }
 
-void ProgrammingAdapter::SetType(ProgrammingAdapterType eType) {
+void ProgrammingAdapter::SetAdapterType(ProgrammingAdapterType eType) {
     m_eType = eType;
 }

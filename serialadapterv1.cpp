@@ -24,10 +24,25 @@
 
 #include "serialadapterv1.h"
 
+#include <wx/choicebk.h>
 
-SerialAdapterV1::SerialAdapterV1() : ProgrammingAdapter(), m_myPanel(NULL) {
-    SetName(_T("Serial Adapter (v1)"));
-    SetType(COMv1);
+SerialAdapterV1::SerialAdapterV1(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter(pPanel, pos)  {
+    SetAdapterName(_T("Serial Adapter (v1)"));
+    SetAdapterType(COMv1);
+
+    wxChoicebook* xModeChoiceBook = new wxChoicebook(this, wxID_ANY, wxPoint(0, 5), wxSize(390, 450));
+
+    wxPanel* xWritePage = new wxPanel(xModeChoiceBook);
+    wxStaticText* xWritePageText = new wxStaticText(xWritePage, wxID_ANY, _T("Write EEPROM"), wxPoint(0, 5), wxSize(380, 25));
+
+    wxPanel* xReadPage = new wxPanel(xModeChoiceBook);
+    wxStaticText* xReadPageText = new wxStaticText(xReadPage, wxID_ANY, _T("Read EEPROM"), wxPoint(0, 5), wxSize(380, 25));
+
+    xModeChoiceBook->AddPage(xWritePage, _T("Write"), true);
+    xModeChoiceBook->AddPage(xReadPage, _T("Read"), false);
+
+    wxStaticText* xReadNoOptionsText = new wxStaticText(xReadPage, wxID_ANY, _T("No Options (not implemented yet COMv1)"), wxPoint(0, 30), wxSize(380, 25));
+    wxStaticText* xWriteNoOptionsText = new wxStaticText(xWritePage, wxID_ANY, _T("No Options (not implemented yet COMv1)"), wxPoint(0, 30), wxSize(380, 25));
 }
 
 SerialAdapterV1::~SerialAdapterV1() {
@@ -36,14 +51,6 @@ SerialAdapterV1::~SerialAdapterV1() {
 
 bool SerialAdapterV1::Init() {
 
-}
-
-wxPanel* SerialAdapterV1::GetOptionControls(wxPanel* pParent, const wxPoint& pos) {
-    wxPanel* panel = new wxPanel(pParent, wxID_ANY, pos, wxSize(380, 30));
-
-    wxStaticText* xNoOptionsText = new wxStaticText(panel, wxID_ANY, _T("No Options (Nothing implemented yet)"), wxPoint(0,0), wxSize(380, 25));
-
-    return panel;
 }
 
 

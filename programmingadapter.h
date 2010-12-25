@@ -38,18 +38,17 @@ enum ProgrammingAdapterType_t {
 
 typedef enum ProgrammingAdapterType_t ProgrammingAdapterType;
 
-class ProgrammingAdapter {
+class ProgrammingAdapter : public wxPanel{
   public:
-	ProgrammingAdapter();
+	ProgrammingAdapter(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
 	virtual ~ProgrammingAdapter();
 
-	const wxString GetName();
-	void SetName(const wxString& xsName);
-	ProgrammingAdapterType GetType();
-	void SetType(ProgrammingAdapterType eType);
+	const wxString GetAdapterName();
+	void SetAdapterName(const wxString& xsName);
+	ProgrammingAdapterType GetAdapterType();
+	void SetAdapterType(ProgrammingAdapterType eType);
 
 	virtual bool Init() = 0;
-	virtual wxPanel* GetOptionControls(wxPanel* pParent, const wxPoint& pos = wxPoint(0,0)) = 0;
 
   private:
 
