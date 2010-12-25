@@ -52,12 +52,8 @@ class MainPanel : public wxPanel {
 	void OnChoice(wxCommandEvent& event);
 
   private:
-    wxPanel* pReadOptionsPanel;
-    wxPanel* pWriteOptionsPanel;
-
-    wxPanel* xReadPage;
-    wxPanel* xWritePage;
-
+    vector<wxPanel*> vReadOptions;
+    vector<wxPanel*> vWriteOptions;
     vector<ProgrammingAdapter*> vAdapters;
 
     int iSelectedAdapter;
