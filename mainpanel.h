@@ -60,6 +60,8 @@ class MainPanel : public wxPanel {
 
     vector<ProgrammingAdapter*> vAdapters;
 
+    int iSelectedAdapter;
+
   protected:
     DECLARE_EVENT_TABLE();
 };
