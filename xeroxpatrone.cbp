@@ -3,11 +3,12 @@
 	<FileVersion major="1" minor="6" />
 	<Project>
 		<Option title="xeroxpatrone" />
+		<Option makefile_is_custom="1" />
 		<Option pch_mode="2" />
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="Debug">
-				<Option output="bin/Debug/xeroxpatrone" prefix_auto="1" extension_auto="1" />
+				<Option output="xeroxpatrone" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Debug/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -17,7 +18,7 @@
 				</Compiler>
 			</Target>
 			<Target title="Release">
-				<Option output="bin/Release/xeroxpatrone" prefix_auto="1" extension_auto="1" />
+				<Option output="xeroxpatrone" prefix_auto="1" extension_auto="1" />
 				<Option object_output="obj/Release/" />
 				<Option type="0" />
 				<Option compiler="gcc" />
@@ -37,6 +38,25 @@
 		<Linker>
 			<Add option="`wx-config --libs`" />
 		</Linker>
+		<Unit filename="Makefile" />
+		<Unit filename="global.cpp" />
+		<Unit filename="global.h" />
+		<Unit filename="logger.cpp" />
+		<Unit filename="logger.h" />
+		<Unit filename="mainpanel.cpp" />
+		<Unit filename="mainpanel.h" />
+		<Unit filename="programmingadapter.cpp" />
+		<Unit filename="programmingadapter.h" />
+		<Unit filename="serialadapterv1.cpp" />
+		<Unit filename="serialadapterv1.h" />
+		<Unit filename="serialadapterv2.cpp" />
+		<Unit filename="serialadapterv2.h" />
+		<Unit filename="singleton.h" />
+		<Unit filename="targetver.h" />
+		<Unit filename="usbadapter.cpp" />
+		<Unit filename="usbadapter.h" />
+		<Unit filename="xeroxpatrone.cpp" />
+		<Unit filename="xeroxpatrone.h" />
 		<Extensions>
 			<envvars />
 			<code_completion />

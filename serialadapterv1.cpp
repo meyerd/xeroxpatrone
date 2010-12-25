@@ -22,47 +22,28 @@
  *
  */
 
-#ifndef XEROXPATRONE_H_
-#define XEROXPATRONE_H_
+#include "serialadapterv1.h"
 
-#include "global.h"
 
-#include <wx/wx.h>
+SerialAdapterV1::SerialAdapterV1() : ProgrammingAdapter(), m_myPanel(NULL) {
+    SetName(_T("Serial Adapter (v1)"));
+    SetType(COMv1);
+}
 
-class Logger;
+SerialAdapterV1::~SerialAdapterV1() {
 
-class XeroxpatroneApp : public wxApp {
-public:
+}
 
-private:
-  bool OnInit();
-  int OnExit();
-};
+bool SerialAdapterV1::Init() {
 
-class XeroxpatroneMainWindow : public wxFrame {
-public:
-	XeroxpatroneMainWindow(const wxString& title, const wxPoint& pos, const wxSize& size);
-	~XeroxpatroneMainWindow();
+}
 
-	void OnQuit(wxCommandEvent& event);
-	void OnClose(wxCloseEvent& event);
-	void OnAbout(wxCommandEvent& event);
-	void OnShowLogWindow(wxCommandEvent& event);
-	void OnHideLogWindow(wxCommandEvent& event);
+wxPanel* SerialAdapterV1::GetOptionControls(wxPanel* pParent, const wxPoint& pos) {
+    wxPanel* panel = new wxPanel(pParent, wxID_ANY, pos, wxSize(380, 30));
 
-private:
-	Logger* logger;
+    wxStaticText* xNoOptionsText = new wxStaticText(panel, wxID_ANY, _T("No Options (Nothing implemented yet)"), wxPoint(0,0), wxSize(380, 25));
 
-protected:
-	DECLARE_EVENT_TABLE();
-};
+    return panel;
+}
 
-enum {
-  ID_MAIN_Quit = 1,
-  ID_MAIN_About,
-  ID_MAIN_ShowLog,
-  ID_MAIN_HideLog,
-  ID_MAINPANEL_choice,
-};
 
-#endif /* XEROXPATRONE_H_ */

@@ -67,7 +67,7 @@ XeroxpatroneMainWindow::XeroxpatroneMainWindow(const wxString& title, const wxPo
 
    SetMenuBar(mainMenu);
 
-   MainPanel(this);
+   MainPanel* xMainPanel = new MainPanel(this);
 
    wxLogMessage(_T("Xeroxpatrone initalized ..."));
 }

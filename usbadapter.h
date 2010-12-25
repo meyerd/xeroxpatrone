@@ -32,7 +32,16 @@
 #include "programmingadapter.h"
 
 class UsbAdapter : public ProgrammingAdapter {
+  public:
+	UsbAdapter();
+	~UsbAdapter();
 
+	bool Init();
+	wxPanel* GetOptionControls(wxPanel* pParent, const wxPoint& pos = wxPoint(0,0));
+
+  private:
+
+    wxPanel* m_myPanel;
 };
 
 #endif /* _USBADAPTER_H_ */

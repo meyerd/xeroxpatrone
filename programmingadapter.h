@@ -29,19 +29,32 @@
 
 #include <wx/wx.h>
 
+enum ProgrammingAdapterType_t {
+    INVALID_ADAPTER_TYPE = 0,
+    USB,
+    COMv1,
+    COMv2,
+};
+
+typedef enum ProgrammingAdapterType_t ProgrammingAdapterType;
+
 class ProgrammingAdapter {
   public:
 	ProgrammingAdapter();
-	~ProgrammingAdapter();
+	virtual ~ProgrammingAdapter();
 
 	const wxString GetName();
 	void SetName(const wxString& xsName);
+	ProgrammingAdapterType GetType();
+	void SetType(ProgrammingAdapterType eType);
 
-	virtual bool Init();
+	virtual bool Init() = 0;
+	virtual wxPanel* GetOptionControls(wxPanel* pParent, const wxPoint& pos = wxPoint(0,0)) = 0;
 
   private:
 
 	wxString m_xsName;
+	ProgrammingAdapterType m_eType;
 };
 
 #endif /* _PROGRAMMINGADAPTER_H_ */

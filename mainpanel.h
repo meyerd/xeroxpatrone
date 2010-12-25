@@ -28,19 +28,40 @@
 #include "global.h"
 
 #include <wx/wx.h>
+#include <vector>
+
+#include "xeroxpatrone.h"
+
+#include "programmingadapter.h"
+#include "usbadapter.h"
+#include "serialadapterv1.h"
+#include "serialadapterv2.h"
+
+using namespace std;
 
 class MainPanel : public wxPanel {
   public:
-	MainPanel(wxWindow *parent, 
-		wxWindowID winid = wxID_ANY, 
-		const wxPoint& pos = wxDefaultPosition, 
+	MainPanel(wxWindow *parent,
+		wxWindowID winid = wxID_ANY,
+		const wxPoint& pos = wxDefaultPosition,
 		const wxSize& size = wxDefaultSize,
-		long style = wxTAB_TRAVERSAL | wxNO_BORDER, 
+		long style = wxTAB_TRAVERSAL | wxNO_BORDER,
 		const wxString& name = _T("main panel"));
 	~MainPanel();
 
-  private:
+	void OnChoice(wxCommandEvent& event);
 
+  private:
+    wxPanel* pReadOptionsPanel;
+    wxPanel* pWriteOptionsPanel;
+
+    wxPanel* xReadPage;
+    wxPanel* xWritePage;
+
+    vector<ProgrammingAdapter*> vAdapters;
+
+  protected:
+    DECLARE_EVENT_TABLE();
 };
 
 #endif /* _MAINPANEL_H_ */

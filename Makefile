@@ -8,7 +8,7 @@ LINKFLAGS = $(shell wx-config --libs)
 
 BIN = xeroxpatrone
 OBJECTS = xeroxpatrone.o  mainpanel.o programmingadapter.o usbadapter.o \
-	logger.o
+	logger.o serialadapterv1.o serialadapterv2.o
 
 Debug: all
 Release: all

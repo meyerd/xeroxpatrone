@@ -22,47 +22,26 @@
  *
  */
 
-#ifndef XEROXPATRONE_H_
-#define XEROXPATRONE_H_
+#ifndef _SERIALADAPTERV1_H_
+#define _SERIALADAPTERV1_H_
 
 #include "global.h"
 
 #include <wx/wx.h>
 
-class Logger;
+#include "programmingadapter.h"
 
-class XeroxpatroneApp : public wxApp {
-public:
+class SerialAdapterV1 : public ProgrammingAdapter {
+  public:
+	SerialAdapterV1();
+	~SerialAdapterV1();
 
-private:
-  bool OnInit();
-  int OnExit();
+	bool Init();
+	wxPanel* GetOptionControls(wxPanel* pParent, const wxPoint& pos = wxPoint(0,0));
+
+  private:
+
+    wxPanel* m_myPanel;
 };
 
-class XeroxpatroneMainWindow : public wxFrame {
-public:
-	XeroxpatroneMainWindow(const wxString& title, const wxPoint& pos, const wxSize& size);
-	~XeroxpatroneMainWindow();
-
-	void OnQuit(wxCommandEvent& event);
-	void OnClose(wxCloseEvent& event);
-	void OnAbout(wxCommandEvent& event);
-	void OnShowLogWindow(wxCommandEvent& event);
-	void OnHideLogWindow(wxCommandEvent& event);
-
-private:
-	Logger* logger;
-
-protected:
-	DECLARE_EVENT_TABLE();
-};
-
-enum {
-  ID_MAIN_Quit = 1,
-  ID_MAIN_About,
-  ID_MAIN_ShowLog,
-  ID_MAIN_HideLog,
-  ID_MAINPANEL_choice,
-};
-
-#endif /* XEROXPATRONE_H_ */
+#endif /* _SERIALADAPTERV1_H_ */

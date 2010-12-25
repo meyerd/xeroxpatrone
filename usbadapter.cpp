@@ -25,4 +25,25 @@
 #include "usbadapter.h"
 
 
+UsbAdapter::UsbAdapter() : ProgrammingAdapter(), m_myPanel(NULL) {
+    SetName(_T("USB Adapter (libusb)"));
+    SetType(USB);
+}
+
+UsbAdapter::~UsbAdapter() {
+
+}
+
+bool UsbAdapter::Init() {
+
+}
+
+wxPanel* UsbAdapter::GetOptionControls(wxPanel* pParent, const wxPoint& pos) {
+    wxPanel* panel = new wxPanel(pParent, wxID_ANY, pos, wxSize(380, 30));
+
+    wxStaticText* xNoOptionsText = new wxStaticText(panel, wxID_ANY, _T("No Options"), wxPoint(0,0), wxSize(380, 25));
+
+    return panel;
+}
+
 

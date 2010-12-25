@@ -24,13 +24,11 @@
 
 #include "programmingadapter.h"
 
-/* ProgrammingAdapter::ProgrammingAdapter() {
-  
+ProgrammingAdapter::ProgrammingAdapter() {
 }
 
 ProgrammingAdapter::~ProgrammingAdapter() {
-
-} */
+}
 
 const wxString ProgrammingAdapter::GetName() {
   return m_xsName;
@@ -38,4 +36,12 @@ const wxString ProgrammingAdapter::GetName() {
 
 void ProgrammingAdapter::SetName(const wxString& xsName) {
   m_xsName = xsName;
+}
+
+ProgrammingAdapterType ProgrammingAdapter::GetType() {
+    return m_eType;
+}
+
+void ProgrammingAdapter::SetType(ProgrammingAdapterType eType) {
+    m_eType = eType;
 }
