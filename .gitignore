@@ -1,1 +1,3 @@
 *.o
+ValgrindOut.xml
+xeroxpatrone
