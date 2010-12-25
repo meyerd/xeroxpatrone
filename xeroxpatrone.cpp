@@ -34,7 +34,7 @@ bool XeroxpatroneApp::OnInit() {
   wxImage::AddHandler(new wxPNGHandler);
 
   XeroxpatroneMainWindow *mainFrame = new XeroxpatroneMainWindow(_T("Xeroxpatrone"), wxPoint(100, 100),
-	  wxSize(400, 600));
+        wxSize(400, 600));
   mainFrame->Show(true);
   SetTopWindow(mainFrame);
   return true;
@@ -67,7 +67,12 @@ XeroxpatroneMainWindow::XeroxpatroneMainWindow(const wxString& title, const wxPo
 
    SetMenuBar(mainMenu);
 
+   wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
    MainPanel* xMainPanel = new MainPanel(this);
+   xTopSizer->Add(xMainPanel, 1, wxEXPAND | wxALL, 0);
+   SetAutoLayout(true);
+   SetSizer(xTopSizer);
+   Layout();
 
    wxLogMessage(_T("Xeroxpatrone initalized ..."));
 }

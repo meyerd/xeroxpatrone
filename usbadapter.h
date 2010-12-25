@@ -28,6 +28,7 @@
 #include "global.h"
 
 #include <wx/wx.h>
+#include <wx/filepicker.h>
 
 #include "programmingadapter.h"
 
@@ -36,8 +37,16 @@ class UsbAdapter : public ProgrammingAdapter {
 	UsbAdapter(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
 	~UsbAdapter();
 
+	void OnWriteClick(wxCommandEvent& event);
+	void OnReadClick(wxCommandEvent& event);
+
 	bool Init();
   private:
+
+  /*  wxFilePickerCtrl* xReadFilePicker;
+    wxTextCtrl* xReadStatusText;
+    wxFilePickerCtrl* xWriteFilePicker;
+    wxTextCtrl* xWriteStatusText; */
 };
 
 #endif /* _USBADAPTER_H_ */

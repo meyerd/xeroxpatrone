@@ -29,19 +29,26 @@
 MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, const wxSize& size,
 	long style, const wxString& name) : wxPanel(parent, winid, pos, size, style, name) {
 
-  wxStaticText* xChooseText = new wxStaticText(this, wxID_ANY, _T("Choose Adapter Type:"), wxPoint(5, 5), wxSize(390, 25));
+  wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
 
-  wxChoicebook* xAdapterChoiceBook = new wxChoicebook(this, wxID_ANY, wxPoint(5, 30), wxSize(390, 450));
+  wxStaticText* xChooseText = new wxStaticText(this, wxID_ANY, _T("Choose Adapter Type:"));
+  xTopSizer->Add(xChooseText, 0, wxALL, 10);
 
-  UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  wxChoicebook* xAdapterChoiceBook = new wxChoicebook(this, wxID_ANY);
+
+  UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
 
-  SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv2Page, xCOMv2Page->GetAdapterName(), false);
 
-  SerialAdapterV1* xCOMv1Page = new SerialAdapterV1((wxPanel*)xAdapterChoiceBook, wxPoint(5, 0));
+  SerialAdapterV1* xCOMv1Page = new SerialAdapterV1((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv1Page, xCOMv1Page->GetAdapterName(), false);
 
+  xTopSizer->Add(xAdapterChoiceBook, 1, wxEXPAND | wxALL, 2);
+  SetAutoLayout(true);
+  SetSizer(xTopSizer);
+  Layout();
 
   /* wxArrayString xEEPROMType;
   xEEPROMType.Add(_T("24c02"));
@@ -53,9 +60,5 @@ MainPanel::~MainPanel() {
 
 }
 
-void MainPanel::OnChoice(wxCommandEvent& event) {
-}
-
 BEGIN_EVENT_TABLE(MainPanel, wxPanel)
-  // EVT_CHOICE(ID_MAINPANEL_choice, MainPanel::OnChoice)
 END_EVENT_TABLE()
