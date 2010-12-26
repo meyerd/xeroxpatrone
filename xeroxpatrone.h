@@ -47,8 +47,11 @@ public:
 	void OnQuit(wxCommandEvent& event);
 	void OnClose(wxCloseEvent& event);
 	void OnAbout(wxCommandEvent& event);
+
 	void OnShowLogWindow(wxCommandEvent& event);
 	void OnHideLogWindow(wxCommandEvent& event);
+
+	void OnHelp(wxCommandEvent& event);
 
 private:
 	Logger* logger;
@@ -62,7 +65,9 @@ enum {
   ID_MAIN_About,
   ID_MAIN_ShowLog,
   ID_MAIN_HideLog,
+  ID_MAIN_ShowHelp,
   ID_MAINPANEL_choice,
+  ID_HELPWINDOW_Ok,
 };
 
 #endif /* XEROXPATRONE_H_ */

@@ -25,6 +25,7 @@
 #include "xeroxpatrone.h"
 #include "logger.h"
 #include "mainpanel.h"
+#include "helpwindow.h"
 
 bool XeroxpatroneApp::OnInit() {
 #if defined(OS_WINDOWS) && defined(DEBUG)
@@ -58,7 +59,10 @@ XeroxpatroneMainWindow::XeroxpatroneMainWindow(const wxString& title, const wxPo
 //#ifdef DEBUG
    mainMenuQuestionmark->Append(ID_MAIN_ShowLog, _T("&Show Log Window"));
    mainMenuQuestionmark->Append(ID_MAIN_HideLog, _T("&Hide Log Window"));
+   mainMenuQuestionmark->AppendSeparator();
 //#endif
+   mainMenuQuestionmark->Append(ID_MAIN_ShowHelp, _T("&Help"));
+   mainMenuQuestionmark->AppendSeparator();
    mainMenuQuestionmark->Append(ID_MAIN_About, _T("&About..."));
 
    wxMenuBar *mainMenu = new wxMenuBar;
@@ -102,12 +106,18 @@ void XeroxpatroneMainWindow::OnHideLogWindow(wxCommandEvent& WXUNUSED(event)) {
 	logger->HideLogWindow();
 }
 
+void XeroxpatroneMainWindow::OnHelp(wxCommandEvent& WXUNUSED(event)) {
+    HelpWindow* pHelpWindow = new HelpWindow(this, _T("Help"), wxDefaultPosition, wxDefaultSize);
+    pHelpWindow->Show(true);
+}
+
 BEGIN_EVENT_TABLE(XeroxpatroneMainWindow, wxFrame)
   EVT_MENU(ID_MAIN_Quit, XeroxpatroneMainWindow::OnQuit)
   EVT_CLOSE(XeroxpatroneMainWindow::OnClose)
   EVT_MENU(ID_MAIN_ShowLog, XeroxpatroneMainWindow::OnShowLogWindow)
   EVT_MENU(ID_MAIN_HideLog, XeroxpatroneMainWindow::OnHideLogWindow)
   EVT_MENU(ID_MAIN_About, XeroxpatroneMainWindow::OnAbout)
+  EVT_MENU(ID_MAIN_ShowHelp, XeroxpatroneMainWindow::OnHelp)
 END_EVENT_TABLE()
 
 IMPLEMENT_APP(XeroxpatroneApp);

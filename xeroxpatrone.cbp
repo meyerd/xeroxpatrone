@@ -41,6 +41,8 @@
 		<Unit filename="Makefile" />
 		<Unit filename="global.cpp" />
 		<Unit filename="global.h" />
+		<Unit filename="helpwindow.cpp" />
+		<Unit filename="helpwindow.h" />
 		<Unit filename="logger.cpp" />
 		<Unit filename="logger.h" />
 		<Unit filename="mainpanel.cpp" />

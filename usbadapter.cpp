@@ -26,7 +26,13 @@
 
 #include <wx/choicebk.h>
 
-UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter(pPanel, pos) {
+UsbAdapter* xUsbAdapter = NULL;
+
+UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter(pPanel, pos),
+    xsReadFile(wxT("")), xsWriteFile(wxT("")) {
+
+    xUsbAdapter = this;
+
     SetAdapterName(_T("USB Adapter (libusb)"));
     SetAdapterType(USB);
 
@@ -39,6 +45,7 @@ UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter
 
     xModeChoiceBook->AddPage(xWritePage, _T("Write"), true);
     xModeChoiceBook->AddPage(xReadPage, _T("Read"), false);
+
 
     xTopSizer->Add(xModeChoiceBook, 1, wxEXPAND, 0);
 
@@ -56,13 +63,14 @@ UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter
                                                              _T("BIN files (*.bin)|*.bin|All files (*.*)|*.*"), wxDefaultPosition, wxDefaultSize,
                                                               wxFLP_USE_TEXTCTRL | wxFLP_SAVE | wxFLP_OVERWRITE_PROMPT, wxDefaultValidator,
                                                               _T("xReadFilePicker"));
+    xReadFilePicker->Connect(wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler(UsbAdapter::OnReadFilePickerChanged), NULL, NULL);
     xReadBoxSizer->Add(xReadFilePicker, 0, wxEXPAND | wxALL, 2);
     wxButton* xReadStartButton = new wxButton(xReadPage, wxID_ANY, _T("Read ..."));
     xReadStartButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(UsbAdapter::OnReadClick), NULL, NULL);
     xReadBoxSizer->Add(xReadStartButton, 0, wxEXPAND | wxALL, 2);
-    wxTextCtrl* xReadStatusText = new wxTextCtrl(xReadPage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
+    /* wxTextCtrl* xReadStatusText = new wxTextCtrl(xReadPage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
                                                  wxTE_MULTILINE | wxTE_READONLY, wxDefaultValidator, _T("xReadStatusText"));
-    xReadBoxSizer->Add(xReadStatusText, 1, wxEXPAND | wxTOP | wxBOTTOM, 10);
+    xReadBoxSizer->Add(xReadStatusText, 1, wxEXPAND | wxTOP | wxBOTTOM, 10); */
     xReadPage->SetAutoLayout(true);
     xReadPage->SetSizer(xReadBoxSizer);
     xReadPage->Layout();
@@ -79,13 +87,14 @@ UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter
                                                              _T("BIN files (*.bin)|*.bin|All files (*.*)|*.*"), wxDefaultPosition, wxDefaultSize,
                                                               wxFLP_USE_TEXTCTRL | wxFLP_OPEN | wxFLP_FILE_MUST_EXIST, wxDefaultValidator,
                                                               _T("xWriteFilePicker"));
+    xWriteFilePicker->Connect(wxEVT_COMMAND_FILEPICKER_CHANGED, wxFileDirPickerEventHandler(UsbAdapter::OnWriteFilePickerChanged), NULL, NULL);
     xWriteBoxSizer->Add(xWriteFilePicker, 0, wxEXPAND | wxALL, 2);
     wxButton* xWriteStartButton = new wxButton(xWritePage, wxID_ANY, _T("Write ..."));
     xWriteStartButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(UsbAdapter::OnWriteClick), NULL, NULL);
     xWriteBoxSizer->Add(xWriteStartButton, 0, wxEXPAND | wxALL, 2);
-    wxTextCtrl* xWriteStatusText = new wxTextCtrl(xWritePage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
+    /* wxTextCtrl* xWriteStatusText = new wxTextCtrl(xWritePage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
                                                  wxTE_MULTILINE | wxTE_READONLY, wxDefaultValidator, _T("xWriteStatusText"));
-    xWriteBoxSizer->Add(xWriteStatusText, 1, wxEXPAND | wxTOP | wxBOTTOM, 10);
+    xWriteBoxSizer->Add(xWriteStatusText, 1, wxEXPAND | wxTOP | wxBOTTOM, 10); */
     xWritePage->SetAutoLayout(true);
     xWritePage->SetSizer(xWriteBoxSizer);
     xWritePage->Layout();
@@ -93,27 +102,40 @@ UsbAdapter::UsbAdapter(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter
     SetAutoLayout(true);
     SetSizer(xTopSizer);
     Layout();
+
+    wxLogMessage(_T("UsbAdapter: idle ..."));
 }
 
 UsbAdapter::~UsbAdapter() {
 
 }
 
+void UsbAdapter::OnReadFilePickerChanged(wxFileDirPickerEvent& event) {
+    xUsbAdapter->xsReadFile = event.GetPath();
+}
+
+void UsbAdapter::OnWriteFilePickerChanged(wxFileDirPickerEvent& event) {
+    xUsbAdapter->xsWriteFile = event.GetPath();
+}
 
 void UsbAdapter::OnWriteClick(wxCommandEvent& event) {
- /*   xWriteStatusText->Clear();
-    xWriteStatusText->AppendText(_T("write clicked.\n"));
-    xWriteStatusText->AppendText(_T("\nidle ...")); */
+    wxLogMessage(_T("UsbAdapter: Starting write ..."));
+    if(xUsbAdapter->xsWriteFile != wxT("")) {
 
-    wxLogMessage(_T("UsbAdapter: write clicked."));
+    } else {
+        wxLogMessage(_T("UsbAdapter: no file selected."));
+    }
+    wxLogMessage(_T("UsbAdapter: idle ..."));
 }
 
 void UsbAdapter::OnReadClick(wxCommandEvent& event) {
-  /*  xReadStatusText->Clear();
-    xReadStatusText->AppendText(_T("read clicked.\n"));
-    xReadStatusText->AppendText(_T("\nidle ...")); */
-
     wxLogMessage(_T("UsbAdapter: read clicked."));
+    if(xUsbAdapter->xsReadFile != wxT("")) {
+
+    } else {
+        wxLogMessage(_T("UsbAdapter: no file selected."));
+    }
+    wxLogMessage(_T("UsbAdapter: idle ..."));
 }
 
 bool UsbAdapter::Init() {

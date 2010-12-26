@@ -77,7 +77,7 @@
 #else
 	#define tcout std::cout
 	#define tcerr std::cerr
-#endif 
+#endif
 
 typedef std::basic_string<TCHAR> tstring;
 typedef std::basic_ostream<TCHAR> tostream;

@@ -22,38 +22,28 @@
  *
  */
 
-#ifndef _USBADAPTER_H_
-#define _USBADAPTER_H_
+#ifndef _HELPWINDOW_H_
+#define _HELPWINDOW_H_
 
 #include "global.h"
 
 #include <wx/wx.h>
-#include <wx/filepicker.h>
 
-#include "programmingadapter.h"
-
-class UsbAdapter : public ProgrammingAdapter {
+class HelpWindow : public wxFrame {
   public:
-	UsbAdapter(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
-	~UsbAdapter();
+	HelpWindow(wxWindow* pParent,
+           const wxString& title = _T("Help"),
+           const wxPoint& pos = wxDefaultPosition,
+           const wxSize& size = wxDefaultSize);
+	~HelpWindow();
 
-	void OnWriteClick(wxCommandEvent& event);
-	void OnReadClick(wxCommandEvent& event);
+	void OnClose(wxCloseEvent& event);
+	void OnOk(wxCommandEvent& event);
 
-	void OnReadFilePickerChanged(wxFileDirPickerEvent& event);
-	void OnWriteFilePickerChanged(wxFileDirPickerEvent& event);
+  private:
 
-	bool Init();
-
-//  private:
-
-    wxString xsWriteFile;
-    wxString xsReadFile;
-
-    /* wxFilePickerCtrl* xReadFilePicker; */
-    /* wxTextCtrl* xReadStatusText; */
-    /* wxFilePickerCtrl* xWriteFilePicker; */
-    /* wxTextCtrl* xWriteStatusText; */
+  protected:
+    DECLARE_EVENT_TABLE();
 };
 
-#endif /* _USBADAPTER_H_ */
+#endif /* _HELPWINDOW_H_ */
