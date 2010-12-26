@@ -39,6 +39,9 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
   UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
 
+  UsbAdapterKernel* xUsbKernelPage = new UsbAdapterKernel((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
+  xAdapterChoiceBook->AddPage(xUsbKernelPage, xUsbKernelPage->GetAdapterName(), false);
+
   SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv2Page, xCOMv2Page->GetAdapterName(), false);
 

@@ -22,40 +22,38 @@
  *
  */
 
-#ifndef _MAINPANEL_H_
-#define _MAINPANEL_H_
+#ifndef _USBADAPTERKERNEL_H_
+#define _USBADAPTERKERNEL_H_
 
 #include "global.h"
 
 #include <wx/wx.h>
-#include <vector>
-
-#include "xeroxpatrone.h"
+#include <wx/filepicker.h>
 
 #include "programmingadapter.h"
-#include "usbadapter.h"
-#include "usbadapterkernel.h"
-#include "serialadapterv1.h"
-#include "serialadapterv2.h"
 
-using namespace std;
-
-class MainPanel : public wxPanel {
+class UsbAdapterKernel : public ProgrammingAdapter {
   public:
-	MainPanel(wxWindow *parent,
-		wxWindowID winid = wxID_ANY,
-		const wxPoint& pos = wxDefaultPosition,
-		const wxSize& size = wxDefaultSize,
-		long style = wxTAB_TRAVERSAL | wxNO_BORDER,
-		const wxString& name = _T("main panel"));
-	~MainPanel();
+	UsbAdapterKernel(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
+	~UsbAdapterKernel();
 
-	void OnChoice(wxCommandEvent& event);
+	void OnWriteClick(wxCommandEvent& event);
+	void OnReadClick(wxCommandEvent& event);
 
-  private:
+	void OnReadFilePickerChanged(wxFileDirPickerEvent& event);
+	void OnWriteFilePickerChanged(wxFileDirPickerEvent& event);
 
-  protected:
-    DECLARE_EVENT_TABLE();
+	bool Init();
+
+//  private:
+
+    wxString xsWriteFile;
+    wxString xsReadFile;
+
+    /* wxFilePickerCtrl* xReadFilePicker; */
+    /* wxTextCtrl* xReadStatusText; */
+    /* wxFilePickerCtrl* xWriteFilePicker; */
+    /* wxTextCtrl* xWriteStatusText; */
 };
 
-#endif /* _MAINPANEL_H_ */
+#endif /* _USBADAPTERKRENEL_H_ */

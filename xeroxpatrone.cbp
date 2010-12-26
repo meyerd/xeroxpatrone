@@ -57,6 +57,8 @@
 		<Unit filename="targetver.h" />
 		<Unit filename="usbadapter.cpp" />
 		<Unit filename="usbadapter.h" />
+		<Unit filename="usbadapterkernel.cpp" />
+		<Unit filename="usbadapterkernel.h" />
 		<Unit filename="xeroxpatrone.cpp" />
 		<Unit filename="xeroxpatrone.h" />
 		<Extensions>
