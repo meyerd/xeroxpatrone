@@ -44,6 +44,7 @@ class UsbAdapter : public ProgrammingAdapter {
 	void OnWriteFilePickerChanged(wxFileDirPickerEvent& event);
 
 	bool Init();
+	bool OnShow();
 
 //  private:
 

@@ -28,6 +28,7 @@
 #include "global.h"
 
 #include <wx/wx.h>
+#include <wx/choicebk.h>
 #include <vector>
 
 #include "xeroxpatrone.h"
@@ -51,6 +52,7 @@ class MainPanel : public wxPanel {
 	~MainPanel();
 
 	void OnChoice(wxCommandEvent& event);
+	void OnChangeNotebookPage(wxNotebookEvent& event);
 
   private:
 

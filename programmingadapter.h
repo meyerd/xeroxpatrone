@@ -49,6 +49,7 @@ class ProgrammingAdapter : public wxPanel{
 	void SetAdapterType(ProgrammingAdapterType eType);
 
 	virtual bool Init() = 0;
+    virtual bool OnShow() = 0;
 
   private:
 

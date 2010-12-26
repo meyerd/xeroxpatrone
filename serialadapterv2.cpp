@@ -53,4 +53,6 @@ bool SerialAdapterV2::Init() {
 
 }
 
-
+bool SerialAdapterV2::OnShow() {
+    return true;
+}

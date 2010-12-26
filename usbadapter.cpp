@@ -118,6 +118,10 @@ void UsbAdapter::OnWriteFilePickerChanged(wxFileDirPickerEvent& event) {
     xUsbAdapter->xsWriteFile = event.GetPath();
 }
 
+bool UsbAdapter::OnShow() {
+    return true;
+}
+
 void UsbAdapter::OnWriteClick(wxCommandEvent& event) {
     wxLogMessage(_T("UsbAdapter: Starting write ..."));
     if(xUsbAdapter->xsWriteFile != wxT("")) {

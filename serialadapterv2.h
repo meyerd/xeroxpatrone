@@ -37,6 +37,7 @@ class SerialAdapterV2 : public ProgrammingAdapter {
 	~SerialAdapterV2();
 
 	bool Init();
+    bool OnShow();
 
   private:
 };

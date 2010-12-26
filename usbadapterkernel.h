@@ -29,6 +29,9 @@
 
 #include <wx/wx.h>
 #include <wx/filepicker.h>
+#include <vector>
+
+using namespace std;
 
 #include "programmingadapter.h"
 
@@ -44,11 +47,19 @@ class UsbAdapterKernel : public ProgrammingAdapter {
 	void OnWriteFilePickerChanged(wxFileDirPickerEvent& event);
 
 	bool Init();
+	bool OnShow();
 
 //  private:
 
     wxString xsWriteFile;
     wxString xsReadFile;
+
+    wxChoice* xDeviceChooser;
+
+private:
+    wxArrayString xslAdapterNames;
+    wxArrayString xslAdapterDevices;
+    int iSelectedAdapter;
 
     /* wxFilePickerCtrl* xReadFilePicker; */
     /* wxTextCtrl* xReadStatusText; */

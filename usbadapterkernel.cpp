@@ -25,6 +25,9 @@
 #include "usbadapterkernel.h"
 
 #include <wx/choicebk.h>
+#include <wx/textfile.h>
+#include <wx/regex.h>
+#include <wx/dir.h>
 
 UsbAdapterKernel* xUsbAdapterKernel = NULL;
 
@@ -37,6 +40,10 @@ UsbAdapterKernel::UsbAdapterKernel(wxPanel* pPanel, const wxPoint& pos) : Progra
     SetAdapterType(USB);
 
     wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
+
+    /*wxChoice* */xDeviceChooser = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
+                                            wxArrayString());
+    xTopSizer->Add(xDeviceChooser, 0, wxEXPAND | wxTOP | wxBOTTOM, 2);
 
     wxChoicebook* xModeChoiceBook = new wxChoicebook(this, wxID_ANY);
 
@@ -116,6 +123,80 @@ void UsbAdapterKernel::OnReadFilePickerChanged(wxFileDirPickerEvent& event) {
 
 void UsbAdapterKernel::OnWriteFilePickerChanged(wxFileDirPickerEvent& event) {
     xUsbAdapterKernel->xsWriteFile = event.GetPath();
+}
+
+bool UsbAdapterKernel::OnShow() {
+#ifdef OS_WINDOWS
+    return false;
+#else
+    xslAdapterNames.Clear();
+    iSelectedAdapter = 0;
+    /* wxTextFile xProcI2C;
+    // look in /proc/sys/i2c
+    xProcI2C.Open(_T("/proc/sys/i2c"));
+    if(xProcI2C.IsOpened()) {
+        wxString xsLine;
+        xsLine = xProcI2C.GetFirstLine();
+        while(!xProcI2C.Eof()) {
+//            wxStringTokenizer xTokenizer(xsLine, _T("\t"));
+            // TODO: implement this ...
+            xsLine = xProcI2C.GetNextLine();
+        }
+    }*/
+    // look in sysfs
+    wxTextFile xMount;
+    xMount.Open(_T("/proc/mounts"));
+    wxString sysfs = _T("");
+    if(xMount.IsOpened()) {
+        wxString xsLine;
+        xsLine = xMount.GetFirstLine();
+        wxRegEx xMountRegex(wxT("^[^ ]* ([^ ]*) ([^ ]*)"));
+        while(!xMount.Eof()) {
+            if(xMountRegex.Matches(xsLine)) {
+                wxString mountpoint = xMountRegex.GetMatch(xsLine, 1);
+                wxString fstype = xMountRegex.GetMatch(xsLine, 2);
+                fstype.MakeLower();
+                if(fstype == wxT("sysfs")) {
+                    wxLogMessage(_T("UsbAdapterKernel: Read mount line '%s', found sysfs"), xsLine.c_str());
+                    sysfs = mountpoint;
+                }
+            }
+            xsLine = xMount.GetNextLine();
+        }
+        xMount.Close();
+    }
+    if(sysfs != wxT("")) {
+        sysfs = sysfs + wxT("/class/i2c-dev");
+        wxLogMessage(_T("UsbAdapterKernel: Opening directory '%s'"), sysfs.c_str());
+        wxDir devs(sysfs);
+        if(devs.IsOpened()) {
+            wxString devname;
+            bool cont = devs.GetFirst(&devname);
+            while(cont) {
+                wxString fulldir = sysfs + wxT("/") + devname + wxT("/name");
+                wxTextFile namefile;
+                namefile.Open(fulldir);
+                if(namefile.IsOpened()) {
+                    wxString name = namefile.GetFirstLine();
+                    xslAdapterNames.Add(name + wxT(" (") + devname + wxT(")"));
+                    xslAdapterDevices.Add(devname);
+                    if(name.Find(wxT("i2c-tiny-usb")) != wxNOT_FOUND) {
+                        iSelectedAdapter = xslAdapterNames.GetCount() - 1;
+                    }
+                }
+                cont = devs.GetNext(&devname);
+            }
+        }
+    }
+
+    xDeviceChooser->Clear();
+    xDeviceChooser->Append(xslAdapterNames);
+    xDeviceChooser->SetSelection(iSelectedAdapter);
+
+    if(xslAdapterNames.GetCount() <= 0)
+        return false;
+    return true;
+#endif
 }
 
 void UsbAdapterKernel::OnWriteClick(wxCommandEvent& event) {

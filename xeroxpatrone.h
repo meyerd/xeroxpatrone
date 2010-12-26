@@ -67,6 +67,7 @@ enum {
   ID_MAIN_HideLog,
   ID_MAIN_ShowHelp,
   ID_MAINPANEL_choice,
+  ID_MAINPANEL_pagechange,
   ID_HELPWINDOW_Ok,
 };
 
