@@ -24,8 +24,12 @@
 
 #include "mainpanel.h"
 
+MainPanel* xMainPanel = NULL;
+
 MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, const wxSize& size,
 	long style, const wxString& name) : wxPanel(parent, winid, pos, size, style, name) {
+
+  xMainPanel = this;
 
   wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
 
@@ -36,6 +40,9 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
 
   UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), false);
+  if(!xUsbPage->OnShow()) {
+    wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xUsbPage->GetAdapterName().c_str());
+  }
 
   UsbAdapterKernel* xUsbKernelPage = new UsbAdapterKernel((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xUsbKernelPage, xUsbKernelPage->GetAdapterName(), true);
@@ -45,11 +52,17 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
 
   SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv2Page, xCOMv2Page->GetAdapterName(), false);
+  if(!xCOMv2Page->OnShow()) {
+    wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xCOMv2Page->GetAdapterName().c_str());
+  }
 
   SerialAdapterV1* xCOMv1Page = new SerialAdapterV1((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv1Page, xCOMv1Page->GetAdapterName(), false);
+  if(!xCOMv1Page->OnShow()) {
+    wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xCOMv1Page->GetAdapterName().c_str());
+  }
 
-  xAdapterChoiceBook->Connect(wxEVT_COMMAND_CHOICEBOOK_PAGE_CHANGED, wxNotebookEventHandler(MainPanel::OnChangeNotebookPage));
+  // xAdapterChoiceBook->Connect(wxEVT_COMMAND_CHOICEBOOK_PAGE_CHANGED, wxNotebookEventHandler(MainPanel::OnChangeNotebookPage));
   xTopSizer->Add(xAdapterChoiceBook, 1, wxEXPAND | wxALL, 2);
   SetAutoLayout(true);
   SetSizer(xTopSizer);
@@ -66,19 +79,24 @@ MainPanel::~MainPanel() {
 }
 
 void MainPanel::OnChangeNotebookPage(wxNotebookEvent& event) {
+    // we get events propagated from the nested choicebooks, this is bad ...
+    // return;
     // int iOldPage = event.GetOldSelection();
     int iNewPage = event.GetSelection();
-    // wxLogMessage(_T("MainPanel: changed tab to %i"), iNewPage);
+    wxLogMessage(_T("MainPanel: changed tab to %i"), iNewPage);
     wxChoicebook* xAdapterChoiceBook = NULL;
-    xAdapterChoiceBook = (wxChoicebook*)event.GetEventObject();
-    if(xAdapterChoiceBook) {
-        ProgrammingAdapter* pAdapter = (ProgrammingAdapter*)xAdapterChoiceBook->GetPage(iNewPage);
-        if(!pAdapter->OnShow()) {
-            wxLogMessage(_T("MainPanel: %s OnShow Event failed."), pAdapter->GetAdapterName().c_str());
+    wxObject* xObj = event.GetEventObject();
+    if(xObj->IsSameAs(*xMainPanel)) {
+        xAdapterChoiceBook = dynamic_cast<wxChoicebook*>(xObj);
+        if(xAdapterChoiceBook) {
+            ProgrammingAdapter* pAdapter = (ProgrammingAdapter*)xAdapterChoiceBook->GetPage(iNewPage);
+            if(!pAdapter->OnShow()) {
+                wxLogMessage(_T("MainPanel: %s OnShow Event failed."), pAdapter->GetAdapterName().c_str());
+            }
         }
     }
 }
 
 BEGIN_EVENT_TABLE(MainPanel, wxPanel)
-    // EVT_NOTEBOOK_PAGE_CHANGED(ID_MAINPANEL_pagechange, MainPanel::OnChangeNotebookPage)
+    EVT_NOTEBOOK_PAGE_CHANGED(ID_MAINPANEL_pagechange, MainPanel::OnChangeNotebookPage)
 END_EVENT_TABLE()

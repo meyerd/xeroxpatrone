@@ -34,7 +34,7 @@ bool XeroxpatroneApp::OnInit() {
 
   wxImage::AddHandler(new wxPNGHandler);
 
-  XeroxpatroneMainWindow *mainFrame = new XeroxpatroneMainWindow(_T("Xeroxpatrone"), wxPoint(100, 100),
+  XeroxpatroneMainWindow *mainFrame = new XeroxpatroneMainWindow(_T("Xeroxpatrone"), wxPoint(300, 100),
         wxSize(400, 600));
   mainFrame->Show(true);
   SetTopWindow(mainFrame);
@@ -47,12 +47,14 @@ int XeroxpatroneApp::OnExit() {
 
 XeroxpatroneMainWindow::XeroxpatroneMainWindow(const wxString& title, const wxPoint& pos, const wxSize& size)
   : wxFrame(NULL, -1, title, pos, size),
-	logger(NULL) {
+	logger(NULL), mainPanel(NULL) {
 
    logger = new Logger(this);
    logger->SetupLogging();
 
    wxMenu *mainMenuFile = new wxMenu;
+   mainMenuFile->Append(ID_MAIN_Rescan, _T("&Scan for devices again ..."));
+   mainMenuFile->AppendSeparator();
    mainMenuFile->Append(ID_MAIN_Quit, _T("&Quit..."));
 
    wxMenu *mainMenuQuestionmark = new wxMenu;
@@ -72,8 +74,8 @@ XeroxpatroneMainWindow::XeroxpatroneMainWindow(const wxString& title, const wxPo
    SetMenuBar(mainMenu);
 
    wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
-   MainPanel* xMainPanel = new MainPanel(this);
-   xTopSizer->Add(xMainPanel, 1, wxEXPAND | wxALL, 0);
+   mainPanel = new MainPanel(this);
+   xTopSizer->Add(mainPanel, 1, wxEXPAND, 0);
    SetAutoLayout(true);
    SetSizer(xTopSizer);
    Layout();
@@ -91,6 +93,18 @@ void XeroxpatroneMainWindow::OnQuit(wxCommandEvent& WXUNUSED(event)) {
 
 void XeroxpatroneMainWindow::OnClose(wxCloseEvent& event) {
   OnCloseWindow(event);
+}
+
+void XeroxpatroneMainWindow::OnRescan(wxCommandEvent& WXUNUSED(event)) {
+    if(mainPanel) {
+        mainPanel->Destroy();
+    }
+    wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
+    mainPanel = new MainPanel(this);
+    xTopSizer->Add(mainPanel, 1, wxEXPAND, 0);
+    SetAutoLayout(true);
+    SetSizer(xTopSizer);
+    Layout();;
 }
 
 void XeroxpatroneMainWindow::OnAbout(wxCommandEvent& WXUNUSED(event)) {
@@ -113,6 +127,7 @@ void XeroxpatroneMainWindow::OnHelp(wxCommandEvent& WXUNUSED(event)) {
 
 BEGIN_EVENT_TABLE(XeroxpatroneMainWindow, wxFrame)
   EVT_MENU(ID_MAIN_Quit, XeroxpatroneMainWindow::OnQuit)
+  EVT_MENU(ID_MAIN_Rescan, XeroxpatroneMainWindow::OnRescan)
   EVT_CLOSE(XeroxpatroneMainWindow::OnClose)
   EVT_MENU(ID_MAIN_ShowLog, XeroxpatroneMainWindow::OnShowLogWindow)
   EVT_MENU(ID_MAIN_HideLog, XeroxpatroneMainWindow::OnHideLogWindow)

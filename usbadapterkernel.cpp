@@ -24,10 +24,16 @@
 
 #include "usbadapterkernel.h"
 
-#include <wx/choicebk.h>
 #include <wx/textfile.h>
 #include <wx/regex.h>
 #include <wx/dir.h>
+
+#include "xeroxpatrone.h"
+
+#ifndef OS_WINDOWS
+// #include <linux/i2c-dev.h>
+#include "i2c-dev.h" // stolen from eeprog (http://codesing.org/eeprog.html)
+#endif
 
 UsbAdapterKernel* xUsbAdapterKernel = NULL;
 
@@ -41,17 +47,17 @@ UsbAdapterKernel::UsbAdapterKernel(wxPanel* pPanel, const wxPoint& pos) : Progra
 
     wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
 
-    /*wxChoice* */xDeviceChooser = new wxChoice(this, wxID_ANY, wxDefaultPosition, wxDefaultSize,
-                                            wxArrayString());
+    /*wxChoice* */xDeviceChooser = new wxChoice(this, ID_USBADAPTERKERNEL_chooser, wxDefaultPosition, wxDefaultSize);
     xTopSizer->Add(xDeviceChooser, 0, wxEXPAND | wxTOP | wxBOTTOM, 2);
 
-    wxChoicebook* xModeChoiceBook = new wxChoicebook(this, wxID_ANY);
+    wxChoicebook* xModeChoiceBook = new wxChoicebook(this, ID_USBADAPTERKERNEL_choicebook);
+    // xModeChoiceBook->Connect(wxEVT_COMMAND_BOOKCTRL_PAGE_CHANGED, wxNotebookEventHandler(UsbAdapterKernel::OnChangeNotebookPage));
 
     wxPanel* xWritePage = new wxPanel(xModeChoiceBook);
     wxPanel* xReadPage = new wxPanel(xModeChoiceBook);
 
-    xModeChoiceBook->AddPage(xWritePage, _T("Write"), true);
-    xModeChoiceBook->AddPage(xReadPage, _T("Read"), false);
+    xModeChoiceBook->AddPage(xWritePage, _T("Write"), false);
+    xModeChoiceBook->AddPage(xReadPage, _T("Read"), true);
 
 
     xTopSizer->Add(xModeChoiceBook, 1, wxEXPAND, 0);
@@ -99,7 +105,7 @@ UsbAdapterKernel::UsbAdapterKernel(wxPanel* pPanel, const wxPoint& pos) : Progra
     wxButton* xWriteStartButton = new wxButton(xWritePage, wxID_ANY, _T("Write ..."));
     xWriteStartButton->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(UsbAdapterKernel::OnWriteClick), NULL, NULL);
     xWriteBoxSizer->Add(xWriteStartButton, 0, wxEXPAND | wxALL, 2);
-    /* wxTextCtrl* xWriteStatusText = new wxTextCtrl(xWritePage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
+    /*wxTextCtrl* xWriteStatusText = new wxTextCtrl(xWritePage, wxID_ANY, _T("idle ..."), wxDefaultPosition, wxDefaultSize,
                                                  wxTE_MULTILINE | wxTE_READONLY, wxDefaultValidator, _T("xWriteStatusText"));
     xWriteBoxSizer->Add(xWriteStatusText, 1, wxEXPAND | wxTOP | wxBOTTOM, 10); */
     xWritePage->SetAutoLayout(true);
@@ -115,6 +121,16 @@ UsbAdapterKernel::UsbAdapterKernel(wxPanel* pPanel, const wxPoint& pos) : Progra
 
 UsbAdapterKernel::~UsbAdapterKernel() {
 
+}
+
+void UsbAdapterKernel::OnChangeNotebookPage(wxNotebookEvent& event) {
+    // catch event and prevent to propagate up to main panel
+    event.Skip();
+    return;
+}
+
+void UsbAdapterKernel::OnDeviceChoice(wxCommandEvent& event) {
+    iSelectedAdapter = event.GetSelection();
 }
 
 void UsbAdapterKernel::OnReadFilePickerChanged(wxFileDirPickerEvent& event) {
@@ -200,27 +216,153 @@ bool UsbAdapterKernel::OnShow() {
 }
 
 void UsbAdapterKernel::OnWriteClick(wxCommandEvent& event) {
+    wxButton* pButton = (wxButton*)event.GetEventObject();
+    pButton->Disable();
+    pButton->SetLabel(_T("Writing ..."));
+    pButton->Update();
     wxLogMessage(_T("UsbAdapterKernel: Starting write ..."));
     if(xUsbAdapterKernel->xsWriteFile != wxT("")) {
+        if(xUsbAdapterKernel->Init()) {
+            wxFile xInput;
+            // wxLogMessage(_T("UsbAdapterKernel: output file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
+            xInput.Open(xUsbAdapterKernel->xsWriteFile, wxFile::read);
+            if(xInput.IsOpened()) {
+                size_t fsize = 0;
+                xInput.SeekEnd(0);
+                fsize = xInput.Tell();
+                xInput.Seek(0);
+                if(fsize < 256) {
+                    wxLogMessage(_T("UsbAdapterKernel: input file too short (%i < 256 bytes)"), fsize);
+                    xInput.Close();
+                    goto out_error;
+                }
+                wxLogMessage(_T("UsbAdapterKernel: input file size %i bytes"), fsize);
+                // start reading from address 0x0
+                int fd = xUsbAdapterKernel->xDeviceFile.fd();
 
+                int write_addr_counter = 0;
+                __u8 write_addr = 0x0;
+                __u8 buf = 0x0;
+                int tmp = 0;
+                for(write_addr_counter = 0; write_addr_counter < 256; write_addr_counter += 1) {
+                    write_addr = (__u8)write_addr_counter;
+                    tmp = xInput.Read(&buf, 1);
+                    if(tmp < 1) {
+                        wxLogMessage(_T("UsbAdapterKernel: error reading from input file at byte %i"), write_addr_counter);
+                        goto out_error;
+                    }
+                    if(i2c_smbus_write_byte_data(fd, write_addr, buf) < 0) {
+                        wxLogMessage(_T("UsbAdapterKernel: error writing byte to EEPROM at byte %i"), write_addr_counter);
+                        goto out_error;
+                    }
+                }
+                xInput.Close();
+            } else {
+                wxLogMessage(_T("UsbAdapterKernel: error opening input file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
+                goto out_error;
+            }
+        } else {
+            wxLogMessage(_T("UsbAdapterKernel: device initialization failed."));
+            goto out_error;
+        }
     } else {
         wxLogMessage(_T("UsbAdapterKernel: no file selected."));
+        goto out_error;
     }
     wxLogMessage(_T("UsbAdapterKernel: idle ..."));
+    wxMessageBox(_T("Wrote 256 bytes."), _T("Success"), wxICON_INFORMATION);
+goto out;
+out_error:
+    wxMessageBox(_T("Error writing EEPROM (consult log window)"), _T("Error"), wxICON_ERROR);
+out:
+    wxLogMessage(_T("UsbAdapterKernel: idle ..."));
+    pButton->Enable();
+    pButton->SetLabel(_T("Write"));
+    pButton->Update();
 }
 
 void UsbAdapterKernel::OnReadClick(wxCommandEvent& event) {
-    wxLogMessage(_T("UsbAdapterKernel: read clicked."));
+    wxButton* pButton = (wxButton*)event.GetEventObject();
+    pButton->Disable();
+    pButton->SetLabel(_T("Reading ..."));
+    pButton->Update();
+    wxLogMessage(_T("UsbAdapterKernel: Starting read ..."));
     if(xUsbAdapterKernel->xsReadFile != wxT("")) {
-
+        if(xUsbAdapterKernel->Init()) {
+            wxFile xOutput;
+            // wxLogMessage(_T("UsbAdapterKernel: output file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
+            xOutput.Open(xUsbAdapterKernel->xsReadFile, wxFile::write);
+            if(xOutput.IsOpened()) {
+                // start reading from address 0x0
+                int fd = xUsbAdapterKernel->xDeviceFile.fd();
+                __u8 start_addr = 0x0;
+                __u8 buf = 0x0;
+                int tmp = 0;
+                if(i2c_smbus_write_byte(fd, start_addr) < 0) {
+                    wxLogMessage(_T("UsbAdapterKernel: error sending reading start address (0x%x)"), start_addr);
+                    goto out_error;
+                }
+                for(int i = 0; i < 256; i++) {
+                    tmp = i2c_smbus_read_byte(fd);
+                    if(tmp < 0) {
+                        wxLogMessage(_T("UsbAdapterKernel: error reading byte at 0x%x"), (int)start_addr + i);
+                        goto out_error;
+                    }
+                    buf = tmp & 0xff;
+                    // wxLogMessage(_T("UsbAdapterKernel: read 0x%x"), buf);
+                    tmp = xOutput.Write(&buf, 1);
+                    if(tmp < 1) {
+                        wxLogMessage(_T("UsbAdapterKernel: error writing to output file at 0x%x"), (int)start_addr + i);
+                        goto out_error;
+                    }
+                }
+            } else {
+                wxLogMessage(_T("UsbAdapterKernel: error opening output file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
+                goto out_error;
+            }
+        } else {
+            wxLogMessage(_T("UsbAdapterKernel: device initialization failed."));
+            goto out_error;
+        }
     } else {
         wxLogMessage(_T("UsbAdapterKernel: no file selected."));
+        goto out_error;
     }
+    wxMessageBox(_T("Read 256 bytes."), _T("Success"), wxICON_INFORMATION);
+goto out;
+out_error:
+    wxMessageBox(_T("Error reading EEPROM (consult log window)"), _T("Error"), wxICON_ERROR);
+out:
     wxLogMessage(_T("UsbAdapterKernel: idle ..."));
+    pButton->Enable();
+    pButton->SetLabel(_T("Read"));
+    pButton->Update();
 }
 
 bool UsbAdapterKernel::Init() {
-
+#ifdef OS_WINDOWS
+    return false;
+#else
+    wxString devfile = wxString(wxT("/dev/") + xslAdapterDevices[iSelectedAdapter]);
+    wxLogMessage(_T("UsbAdapterKernel: Opening device '%s'"), devfile.c_str());
+    if(xDeviceFile.IsOpened()) {
+        xDeviceFile.Close();
+    }
+    xDeviceFile.Open(devfile);
+    if(!xDeviceFile.IsOpened()) {
+        wxLogMessage(_T("UsbAdaperKernel: Error opening device '%s'"), devfile.c_str());
+        return false;
+    }
+    int fd = xDeviceFile.fd();
+    int addr = 0x50;
+    if(ioctl(fd, I2C_SLAVE, addr) < 0) {
+        wxLogMessage(_T("UsbAdapterKernel: Error sending i2c slave address 0x%x"), addr);
+        return false;
+    }
+    return true;
+#endif
 }
 
-
+BEGIN_EVENT_TABLE(UsbAdapterKernel, wxPanel)
+    EVT_CHOICE(ID_USBADAPTERKERNEL_chooser, UsbAdapterKernel::OnDeviceChoice)
+END_EVENT_TABLE()

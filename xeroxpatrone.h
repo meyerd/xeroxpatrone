@@ -30,6 +30,7 @@
 #include <wx/wx.h>
 
 class Logger;
+class MainPanel;
 
 class XeroxpatroneApp : public wxApp {
 public:
@@ -45,6 +46,8 @@ public:
 	~XeroxpatroneMainWindow();
 
 	void OnQuit(wxCommandEvent& event);
+	void OnRescan(wxCommandEvent& event);
+
 	void OnClose(wxCloseEvent& event);
 	void OnAbout(wxCommandEvent& event);
 
@@ -55,6 +58,7 @@ public:
 
 private:
 	Logger* logger;
+	MainPanel* mainPanel;
 
 protected:
 	DECLARE_EVENT_TABLE();
@@ -62,6 +66,7 @@ protected:
 
 enum {
   ID_MAIN_Quit = 1,
+  ID_MAIN_Rescan,
   ID_MAIN_About,
   ID_MAIN_ShowLog,
   ID_MAIN_HideLog,
@@ -69,6 +74,8 @@ enum {
   ID_MAINPANEL_choice,
   ID_MAINPANEL_pagechange,
   ID_HELPWINDOW_Ok,
+  ID_USBADAPTERKERNEL_choicebook,
+  ID_USBADAPTERKERNEL_chooser,
 };
 
 #endif /* XEROXPATRONE_H_ */
