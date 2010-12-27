@@ -39,17 +39,24 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
   wxChoicebook* xAdapterChoiceBook = new wxChoicebook(this, ID_MAINPANEL_pagechange);
 
   UsbAdapter* xUsbPage = new UsbAdapter((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
+#ifdef OS_WINDOWS
+  xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
+#else
   xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), false);
+#endif
   if(!xUsbPage->OnShow()) {
     wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xUsbPage->GetAdapterName().c_str());
   }
 
+#ifndef OS_WINDOWS
   UsbAdapterKernel* xUsbKernelPage = new UsbAdapterKernel((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xUsbKernelPage, xUsbKernelPage->GetAdapterName(), true);
   if(!xUsbKernelPage->OnShow()) {
     wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xUsbKernelPage->GetAdapterName().c_str());
   }
+#endif
 
+#ifdef OS_WINDOWS
   SerialAdapterV2* xCOMv2Page = new SerialAdapterV2((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
   xAdapterChoiceBook->AddPage(xCOMv2Page, xCOMv2Page->GetAdapterName(), false);
   if(!xCOMv2Page->OnShow()) {
@@ -61,6 +68,7 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
   if(!xCOMv1Page->OnShow()) {
     wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xCOMv1Page->GetAdapterName().c_str());
   }
+#endif
 
   // xAdapterChoiceBook->Connect(wxEVT_COMMAND_CHOICEBOOK_PAGE_CHANGED, wxNotebookEventHandler(MainPanel::OnChangeNotebookPage));
   xTopSizer->Add(xAdapterChoiceBook, 1, wxEXPAND | wxALL, 2);
