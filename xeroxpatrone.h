@@ -76,6 +76,8 @@ enum {
   ID_HELPWINDOW_Ok,
   ID_USBADAPTERKERNEL_choicebook,
   ID_USBADAPTERKERNEL_chooser,
+  ID_USBADAPTER_choicebook,
+  ID_USBADAPTER_chooser,
 };
 
 #endif /* XEROXPATRONE_H_ */

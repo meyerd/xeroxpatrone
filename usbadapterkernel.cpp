@@ -269,7 +269,6 @@ void UsbAdapterKernel::OnWriteClick(wxCommandEvent& event) {
         wxLogMessage(_T("UsbAdapterKernel: no file selected."));
         goto out_error;
     }
-    wxLogMessage(_T("UsbAdapterKernel: idle ..."));
     wxMessageBox(_T("Wrote 256 bytes."), _T("Success"), wxICON_INFORMATION);
 goto out;
 out_error:
@@ -316,6 +315,7 @@ void UsbAdapterKernel::OnReadClick(wxCommandEvent& event) {
                         goto out_error;
                     }
                 }
+                xOutput.Close();
             } else {
                 wxLogMessage(_T("UsbAdapterKernel: error opening output file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
                 goto out_error;
@@ -343,6 +343,8 @@ bool UsbAdapterKernel::Init() {
 #ifdef OS_WINDOWS
     return false;
 #else
+    if(xslAdapterDevices.GetCount() <= 0)
+        return false;
     wxString devfile = wxString(wxT("/dev/") + xslAdapterDevices[iSelectedAdapter]);
     wxLogMessage(_T("UsbAdapterKernel: Opening device '%s'"), devfile.c_str());
     if(xDeviceFile.IsOpened()) {
