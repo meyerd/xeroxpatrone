@@ -50,7 +50,7 @@ SerialAdapterV2::~SerialAdapterV2() {
 }
 
 bool SerialAdapterV2::Init() {
-
+	return false;
 }
 
 bool SerialAdapterV2::OnShow() {

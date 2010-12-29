@@ -216,6 +216,7 @@ bool UsbAdapterKernel::OnShow() {
 }
 
 void UsbAdapterKernel::OnWriteClick(wxCommandEvent& event) {
+#ifndef OS_WINDOWS
     wxButton* pButton = (wxButton*)event.GetEventObject();
     pButton->Disable();
     pButton->SetLabel(_T("Writing ..."));
@@ -278,9 +279,11 @@ out:
     pButton->Enable();
     pButton->SetLabel(_T("Write"));
     pButton->Update();
+#endif
 }
 
 void UsbAdapterKernel::OnReadClick(wxCommandEvent& event) {
+#ifndef OS_WINDOWS
     wxButton* pButton = (wxButton*)event.GetEventObject();
     pButton->Disable();
     pButton->SetLabel(_T("Reading ..."));
@@ -337,6 +340,7 @@ out:
     pButton->Enable();
     pButton->SetLabel(_T("Read"));
     pButton->Update();
+#endif
 }
 
 bool UsbAdapterKernel::Init() {

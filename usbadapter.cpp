@@ -143,7 +143,11 @@ bool UsbAdapter::OnShow() {
         for(dev = bus->devices; dev; dev = dev->next) {
             if((dev->descriptor.idVendor == I2C_TINY_USB_VID) &&
                 (dev->descriptor.idProduct == I2C_TINY_USB_PID)) {
-                    xslAdapterDevices.Add(wxString(wxT("i2c-tiny-usb @ bus ")) + wxString::FromAscii(bus->dirname) +
+                    xslAdapterDevices.Add(wxString(wxT("i2c-tiny-usb @ "))
+#ifndef OS_WINDOWS
+						+ wxString("bus ")
+#endif
+						+ wxString::FromAscii(bus->dirname) +
                                           wxString(wxT(" device ")) + wxString::FromAscii(dev->filename));
                     vDevs.push_back(dev);
                     iSelectedAdapter = xslAdapterDevices.GetCount() - 1;
@@ -357,7 +361,7 @@ void UsbAdapter::OnReadClick(wxCommandEvent& event) {
                 wxLogMessage(_T("UsbAdapter: error reading one byte at address 0x%x"), start_addr);
                 goto out_error;
             }
-            wxLogMessage(_T("UsbAdapter: read 0x%x"), buf);
+            // wxLogMessage(_T("UsbAdapter: read 0x%x"), buf);
             tmp = xOutput.Write(&buf, 1);
             if(tmp < 1) {
                 wxLogMessage(_T("UsbAdapter: error writing to output file at address 0x%x"), start_addr);

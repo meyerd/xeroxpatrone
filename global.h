@@ -91,6 +91,10 @@ typedef std::basic_stringstream<TCHAR> tstringstream;
 	#define FILE_SEPARATOR "/"
 #endif
 
+#ifdef OS_WINDOWS
+typedef unsigned char __u8;
+#endif
+
 // global objects
 
 // program specific compile time configuration options

@@ -42,7 +42,7 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
 #ifdef OS_WINDOWS
   xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
 #else
-  xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), true);
+  xAdapterChoiceBook->AddPage(xUsbPage, xUsbPage->GetAdapterName(), false);
 #endif
   if(!xUsbPage->OnShow()) {
     wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xUsbPage->GetAdapterName().c_str());
@@ -50,7 +50,7 @@ MainPanel::MainPanel(wxWindow *parent, wxWindowID winid, const wxPoint& pos, con
 
 #ifndef OS_WINDOWS
   UsbAdapterKernel* xUsbKernelPage = new UsbAdapterKernel((wxPanel*)xAdapterChoiceBook, wxDefaultPosition);
-  xAdapterChoiceBook->AddPage(xUsbKernelPage, xUsbKernelPage->GetAdapterName(), false);
+  xAdapterChoiceBook->AddPage(xUsbKernelPage, xUsbKernelPage->GetAdapterName(), true);
   if(!xUsbKernelPage->OnShow()) {
     wxLogMessage(_T("MainPanel: %s OnShow Event failed."), xUsbKernelPage->GetAdapterName().c_str());
   }
