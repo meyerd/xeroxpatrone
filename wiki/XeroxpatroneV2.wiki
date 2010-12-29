@@ -16,3 +16,5 @@ The sourcecode is available in the SVN repository, to compile it you will need t
 
  * "MSVCR100.dll missing" or "MSVCP100.dll missing" (Windows)
    You need to install the Microsoft Visual C++ Redistributable, available for [https://www.microsoft.com/downloads/en/details.aspx?FamilyID=a7b7a05e-6de6-4d3a-a423-37bf0912db84&displaylang=en Windows x86] and [https://www.microsoft.com/downloads/en/details.aspx?familyid=BD512D9E-43C8-4655-81BF-9350143D5867&displaylang=en Windows x64].
+ * "libusb0.dll missing" (Windows)
+   You need to install the driver for the tinyusb device.
