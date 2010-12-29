@@ -10,7 +10,7 @@ In addition to the previous versions it supports:
  * Graphical User Interface based on wxWidgets
 
 It can be downloaded here for Windows (x86) and Linux (x64, static binary).
-The sourcecode is available in the SVN repository
+The sourcecode is available in the SVN repository, to compile it you will need the wxWidgets and libusb libraries.
 
 = FAQ =
 
