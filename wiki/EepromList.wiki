@@ -58,6 +58,12 @@
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20EURO%20compatible%20magenta%20-%202000%20pages%20full.bin Magenta 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20EURO%20compatible%20cyan%20-%202000%20pages%20full.bin Yellow 2000 Pages]
 
+  * EASTERN EUROPE Version
+   * [http://xeroxpatrone.googlecode.com/files/eastern_black_2000.bin Black 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/eastern_cyan_1000.bin Cyan 1000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/eastern_magenta_1000.bin Magenta 1000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/eastern_yellow_1000.bin Yellow 1000 Pages]
+
 = EEPROMS still missing =
 
 As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
