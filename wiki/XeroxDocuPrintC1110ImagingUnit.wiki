@@ -5,3 +5,10 @@
 The Imaging Unit of the C1110 Printer contains a  EEPROM which also counts the pages. The chip can be connected the same way as the [http://code.google.com/p/xeroxpatrone/wiki/XeroxPhaser6130ImagingUnit Xerox Phaser 6130 Imaging Unit].
 
 A EEPROM dump to reset the page counters is available [http://xeroxpatrone.googlecode.com/files/C1110%20new%20image%20unit.bin here].
+
+= Images =
+Some images of a reader, that has a eeprom socket on one end and can be attached to the DocuPrint C1110 Imaging Unit. The eeprom reader must use 3.3 V!
+
+http://xeroxpatrone.googlecode.com/files/reader.jpg
+
+http://xeroxpatrone.googlecode.com/files/reader2.jpg
