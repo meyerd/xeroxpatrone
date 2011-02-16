@@ -68,6 +68,11 @@
    * [http://xeroxpatrone.googlecode.com/files/eastern_yellow_1000.bin Yellow 1000 Pages]
   * US Version
    * [http://xeroxpatrone.googlecode.com/files/Xerox6125_US_30_percent_fill.bin All Colors (30% fill only!)]
+  * RUSSIA Version
+   * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20original%20black-RUS-2000_Full.bin Black 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20cyan-RUS-%202000_Full.bin Cyan 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20magenta-RUS-2000_full.bin Magenta 2000 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20yellow-RUS-2000_full.bin Yellow 2000 Pages]
 
 = EEPROMS still missing =
 
