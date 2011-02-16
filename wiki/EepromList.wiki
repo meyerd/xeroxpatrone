@@ -57,6 +57,7 @@
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20EURO%20compatible%20yellow%20-%202000%20pages%20full.bin Cyan 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20EURO%20compatible%20magenta%20-%202000%20pages%20full.bin Magenta 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20EURO%20compatible%20cyan%20-%202000%20pages%20full.bin Yellow 2000 Pages]
+
    * [http://xeroxpatrone.googlecode.com/files/6125_Black_EURO_1000.bin Black 1000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/6125_Cyan_EURO_1000.bin Cyan 1000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/6125_Magenta_EURO_1000.bin Magenta 1000 Pages]
