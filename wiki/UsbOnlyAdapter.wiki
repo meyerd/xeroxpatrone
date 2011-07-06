@@ -1,0 +1,7 @@
+#summary Usb-only programming adapter
+
+= Usb-only adapter =
+
+For all the notebook users, that have no good old serial port at hand, there are good news: the new [XeroxpatroneV2 programming tool] supports a usb-only adapter. 
+
+It is a [http://www.harbaum.org/till/i2c_tiny_usb/index.shtml i2c tiny usb]. Just build the adapter from there and attach it to the eeprom. Should work out of the box.
