@@ -25,12 +25,15 @@
 #include "helpwindow.h"
 #include "xeroxpatrone.h"
 
+#define HELPWINDOW_TEXT \
+	"You can find further informations at: https://code.google.com/p/xeroxpatrone/wiki/XeroxpatroneV2"
+
 HelpWindow::HelpWindow(wxWindow* pParent, const wxString& title, const wxPoint& pos, const wxSize& size) :
     wxFrame(pParent, wxID_ANY, title, pos, size) {
 
   wxBoxSizer* xTopSizer = new wxBoxSizer(wxVERTICAL);
 
-  wxTextCtrl* xHelpText = new wxTextCtrl(this, wxID_ANY, _T("helptext"), wxDefaultPosition,
+  wxTextCtrl* xHelpText = new wxTextCtrl(this, wxID_ANY, _T(HELPWINDOW_TEXT), wxDefaultPosition,
                                          wxDefaultSize, wxTE_MULTILINE | wxTE_READONLY);
 
   xTopSizer->Add(xHelpText, 1, wxEXPAND | wxALL, 2);

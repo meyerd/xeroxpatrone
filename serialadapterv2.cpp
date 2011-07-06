@@ -30,7 +30,7 @@ typedef unsigned char __u8;
 SerialAdapterV2* xSerialAdapterV2 = NULL;
 
 SerialAdapterV2::SerialAdapterV2(wxPanel* pPanel, const wxPoint& pos) : ProgrammingAdapter(pPanel, pos)
-#ifdef OS_WINDOwS
+#ifdef OS_WINDOWS
 	,xsReadFile(wxT("")), xsWriteFile(wxT("")), handle(NULL) 
 #endif
 {
@@ -209,7 +209,7 @@ void SerialAdapterV2::OnDeviceChoice(wxCommandEvent& event) {
 #endif
 }
 
-#ifdef OS_WiNDOWS
+#ifdef OS_WINDOWS
 #define CHECKACK_EXIT(x) {if(SerialAdapterV2Helper::checkack(xSerialAdapterV2->handle) != 1) \
 	{(x); \
 		goto out_error; \
