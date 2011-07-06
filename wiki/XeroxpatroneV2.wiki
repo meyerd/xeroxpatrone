@@ -6,7 +6,7 @@ This is the information page about the new Xeroxpatrone v2 program.
 
 In addition to the previous versions it supports:
  * [EasyPCAdapter] and the old COM-Port PC Adapter at the same time (Windows only)
- * The new USB Adapter via libusb and the i2c-tiny-usb kernel driver
+ * The [UsbOnlyAdapter new USB Adapter] via libusb and the i2c-tiny-usb kernel driver
  * Graphical User Interface based on wxWidgets
 
 It can be downloaded here for [https://xeroxpatrone.googlecode.com/files/xeroxpatronev2_win_x86.zip Windows] (x86) and [https://xeroxpatrone.googlecode.com/files/xeroxpatrone_linux_x64_dynamic.zip Linux] (x64, dynamically linked).
