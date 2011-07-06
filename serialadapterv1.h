@@ -42,4 +42,8 @@ class SerialAdapterV1 : public ProgrammingAdapter {
   private:
 };
 
+namespace SerialAdapterV1Helper {
+
+};
+
 #endif /* _SERIALADAPTERV1_H_ */

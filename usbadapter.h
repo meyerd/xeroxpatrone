@@ -70,6 +70,8 @@ class UsbAdapter : public ProgrammingAdapter {
 	UsbAdapter(wxPanel* pPanel, const wxPoint& pos = wxPoint(0,0));
 	~UsbAdapter();
 
+	void OnDeviceChoice(wxCommandEvent& event);
+
 	void OnWriteClick(wxCommandEvent& event);
 	void OnReadClick(wxCommandEvent& event);
 
@@ -105,6 +107,8 @@ private:
     /* wxTextCtrl* xReadStatusText; */
     /* wxFilePickerCtrl* xWriteFilePicker; */
     /* wxTextCtrl* xWriteStatusText; */
+protected:
+    DECLARE_EVENT_TABLE();
 };
 
 #endif /* _USBADAPTER_H_ */

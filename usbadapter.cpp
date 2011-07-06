@@ -123,6 +123,10 @@ UsbAdapter::~UsbAdapter() {
     }
 }
 
+void UsbAdapter::OnDeviceChoice(wxCommandEvent& event) {
+    iSelectedAdapter = event.GetSelection();
+}
+
 void UsbAdapter::OnReadFilePickerChanged(wxFileDirPickerEvent& event) {
     xUsbAdapter->xsReadFile = event.GetPath();
 }
@@ -161,6 +165,8 @@ bool UsbAdapter::OnShow() {
 
     if(xslAdapterDevices.GetCount() <= 0) {
         wxLogMessage(_T("UsbAdapter: didn't find a i2c-tiny-usb device"));
+		xDeviceChooser->Append(wxString(wxT("No i2c-tiny-usb device found")));
+		xDeviceChooser->SetSelection(0);
         return false;
     }
 
@@ -305,11 +311,11 @@ void UsbAdapter::OnWriteClick(wxCommandEvent& event) {
                     write_addr = (__u8)write_addr_counter;
                     tmp = xInput.Read(&buf, 1);
                     if(tmp < 1) {
-                        wxLogMessage(_T("UsbAdapterKernel: error reading from input file at byte %i"), write_addr_counter);
+                        wxLogMessage(_T("UsbAdapter: error reading from input file at byte %i"), write_addr_counter);
                         goto out_error;
                     }
                     if(!xUsbAdapter->i2c_write_cmd_and_byte(xUsbAdapter->handle, EEPROM_DEVADDR, write_addr, buf)) {
-                        wxLogMessage(_T("UsbAdapterKernel: error writing byte to EEPROM at byte %i"), write_addr_counter);
+                        wxLogMessage(_T("UsbAdapter: error writing byte to EEPROM at byte %i"), write_addr_counter);
                         goto out_error;
                     }
                 }
@@ -430,4 +436,6 @@ bool UsbAdapter::Init() {
     return true;
 }
 
-
+BEGIN_EVENT_TABLE(UsbAdapter, wxPanel)
+    EVT_CHOICE(ID_USBADAPTER_chooser, UsbAdapter::OnDeviceChoice)
+END_EVENT_TABLE()

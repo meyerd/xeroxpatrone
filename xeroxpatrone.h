@@ -78,6 +78,8 @@ enum {
   ID_USBADAPTERKERNEL_chooser,
   ID_USBADAPTER_choicebook,
   ID_USBADAPTER_chooser,
+  ID_SERIALADAPTERV2_choicebook,
+  ID_SERIALADAPTERV2_chooser,
 };
 
 #endif /* XEROXPATRONE_H_ */
