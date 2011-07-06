@@ -12,6 +12,12 @@ In addition to the previous versions it supports:
 It can be downloaded here for Windows (x86) and Linux (x64, static binary).
 The sourcecode is available in the SVN repository, to compile it you will need the wxWidgets and libusb libraries.
 
+= Usage =
+
+The usage should be pretty intuitive. On linux it may be neccessary to start the probram with root permissions, or to adjust the device access rights when using the usb kernel driver.
+
+If you started the program and plugged in the usb device afterwards, it's not automatically detected. Just select "File->Scan for devices again ..."
+
 = FAQ =
 
  * "MSVCR100.dll missing" or "MSVCP100.dll missing" (Windows)
