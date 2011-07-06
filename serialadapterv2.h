@@ -53,24 +53,26 @@ class SerialAdapterV2 : public ProgrammingAdapter {
 	void OnDeviceChoice(wxCommandEvent& event);
 
 	bool Init();
-    bool OnShow();
+  bool OnShow();
 
 	wxString xsWriteFile;
-    wxString xsReadFile;
+  wxString xsReadFile;
 
 	wxChoice* xDeviceChooser;
 
   private:
+#ifdef OS_WINDOWS
 	HANDLE handle;
-    wxArrayString xslAdapterDevices;
-    int iSelectedAdapter;
+#endif
+  wxArrayString xslAdapterDevices;
+  int iSelectedAdapter;
   protected:
     DECLARE_EVENT_TABLE();
 };
 
 class SerialAdapterV2Helper {
 	typedef unsigned char __u8;
-
+#ifdef OS_WINDOWS
 public:
 	static void set_sda(int out, HANDLE handle);
 	static void set_scl(int out, HANDLE handle);
@@ -78,7 +80,7 @@ public:
 	static int get_scl(HANDLE handle);
 	static void delay();
 	static void pulse();
-
+	
 	static void start(HANDLE handle);
 	static void stop(HANDLE handle);
 	static int checkack(HANDLE handle);
@@ -87,6 +89,7 @@ public:
 
 	static void sendbyte(__u8 out, HANDLE handle);
 	static void recvbyte(__u8* in, HANDLE handle);
+#endif
 };
 
 #endif /* _SERIALADAPTERV2_H_ */

@@ -149,7 +149,7 @@ bool UsbAdapter::OnShow() {
                 (dev->descriptor.idProduct == I2C_TINY_USB_PID)) {
                     xslAdapterDevices.Add(wxString(wxT("i2c-tiny-usb @ "))
 #ifndef OS_WINDOWS
-						+ wxString("bus ")
+						+ wxString(wxT("bus "))
 #endif
 						+ wxString::FromAscii(bus->dirname) +
                                           wxString(wxT(" device ")) + wxString::FromAscii(dev->filename));
