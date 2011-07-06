@@ -19,8 +19,8 @@ using namespace optparse;
 // SetCommMask CTS DSR
 // EscapeCommm RTS DTR
 
-// #define ADAPTER_TYPE 1 // default adapter with active power source and inverters
-#define ADAPTER_TYPE 2 // adapter type with usb power and z-diodes
+#define ADAPTER_TYPE 1 // default adapter with active power source and inverters
+// #define ADAPTER_TYPE 2 // adapter type with usb power and z-diodes
 
 DCB dcb;
 HANDLE hCom;
