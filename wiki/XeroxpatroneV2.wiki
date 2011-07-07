@@ -1,4 +1,5 @@
 #summary Xeroxpatrone V2
+#labels Featured
 
 = Introduction =
 
