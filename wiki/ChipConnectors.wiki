@@ -1,4 +1,5 @@
 #summary Some chip connector constructions that proved to work quite well
+#labels Featured
 
 = Connector Constructions =
 
