@@ -9,7 +9,7 @@ The parts are really cheap to buy for the z-Diodes you can use for example MMSZ5
 
 The USB connection is only used to provide power to the EEPROM chip. The Data flows still through the RS232 connection.
 
-For the connection between the chip pcb and the adapter Lumberg 302299 04 K01 can be used for example. See [http://xeroxpatrone.googlecode.com/files/Chip_connector.pdf here] for details and pictures.
+For the connection between the chip pcb and the adapter Lumberg 302299 04 K01 can be used for example. See [ChipConnectors here] for details and pictures.
 
 = EEPROM Pinout =
 
