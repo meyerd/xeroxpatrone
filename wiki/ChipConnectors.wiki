@@ -1,0 +1,15 @@
+#summary Some chip connector constructions that proved to work quite well
+
+= Connector Constructions =
+
+== Lumberg Connector ==
+
+[http://xeroxpatrone.googlecode.com/files/Chip_connector.pdf see pdf]
+
+== Homemade ==
+
+It uses a Sony Memory Stick connector, modified with some plastic parts and hotmelt glue:
+
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/alternative_connector_01.jpg" width="80%">
+
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/alternative_connector_02.jpg" width="80%">
