@@ -1,4 +1,5 @@
 #summary Usb-only programming adapter
+#labels Featured
 
 = Usb-only adapter =
 
