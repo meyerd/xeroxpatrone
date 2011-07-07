@@ -2,6 +2,8 @@
 
 = Connector Constructions =
 
+Some homemade connector constructions:
+
 == Lumberg Connector ==
 
 [http://xeroxpatrone.googlecode.com/files/Chip_connector.pdf see pdf]
