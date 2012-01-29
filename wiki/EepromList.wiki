@@ -79,6 +79,8 @@
 
 As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
 
+*Xerox Phaser 6500*
+
 *Xerox Phaser 6128*
 
   * Black 3100 Pages
