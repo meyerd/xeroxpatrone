@@ -75,6 +75,9 @@
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20magenta-RUS-2000_full.bin Magenta 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20yellow-RUS-2000_full.bin Yellow 2000 Pages]
 
+*[RicohAficio Ricoh Aficio AP610N]*
+  * [http://xeroxpatrone.googlecode.com/files/ricoh_aficio_ap610n_black.bin Black]
+ 
 = EEPROMS still missing =
 
 As you see the list of missing EEPROM dumps is still very long. Please send me yours so i can add them.
