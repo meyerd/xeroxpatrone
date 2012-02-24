@@ -76,7 +76,7 @@
    * [http://xeroxpatrone.googlecode.com/files/XEROX%20Phaser%206125%20-%20compatible%20yellow-RUS-2000_full.bin Yellow 2000 Pages]
 
 *[RicohAficio Ricoh Aficio AP610N]*
-  * [http://xeroxpatrone.googlecode.com/files/ricoh_aficio_ap610n_black.bin Black]
+  * [http://xeroxpatrone.googlecode.com/files/Ricoh_Aficio_AP610N_black.bin Black]
  
 = EEPROMS still missing =
 
