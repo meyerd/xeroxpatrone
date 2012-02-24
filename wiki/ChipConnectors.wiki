@@ -5,6 +5,16 @@
 
 Some homemade connector constructions:
 
+== Original Connector ==
+
+This connector was taken out of a dead unit and can serve as a measurement reference.
+
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/xerox%20connector.jpg" width="80%">
+
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/xerox%20connector%202.jpg" width="80%">
+
+<img border="0" src="http://xeroxpatrone.googlecode.com/files/xerox%20connector%203.jpg" width="80%">
+
 == Lumberg Connector ==
 
 [http://xeroxpatrone.googlecode.com/files/Chip_connector.pdf see pdf]
