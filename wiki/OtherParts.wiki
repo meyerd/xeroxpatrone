@@ -1,0 +1,9 @@
+#summary Other printer parts, that can be reprogrammed
+
+= Introduction =
+
+Pointers to specific pages for other parts of the printers that can be reprogrammed:
+
+  * [XeroxPhaser850 Xerox Phaser 850 Maintenance EEPROM]
+  * [XeroxPhaser6130ImagingUnit Xerox Phaser 6130/6140 Imaging Unit]
+  * [XeroxDocuPrintC1110ImagingUnit Fuji Xerox DocuPrint C1110 Imaging Unit]
