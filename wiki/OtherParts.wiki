@@ -1,6 +1,6 @@
 #summary Other printer parts, that can be reprogrammed
 
-= Introduction =
+= Flashing other printer parts =
 
 Pointers to specific pages for other parts of the printers that can be reprogrammed:
 
