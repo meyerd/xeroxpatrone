@@ -23,7 +23,7 @@ The cartridges have some small pcb mounted. Excerpt of a mail describing the fin
    6    GND
 }}}
 
-Please note, when flashing the cartridges, there seems to be a serial number encoded into it. You may have to change this. For example for the eeprom dump available [http://xeroxpatrone.googlecode.com/files/ricoh_aficio_ap610n_black.bin here] has the serial number `A7270102061`. 
+Please note, when flashing the cartridges, there seems to be a serial number encoded into it. You may have to change this. For example for the eeprom dump available [http://xeroxpatrone.googlecode.com/files/Ricoh_Aficio_AP610N_black.bin here] has the serial number `A7270102061`. 
 
 A hexdump of it looks like this:
 
