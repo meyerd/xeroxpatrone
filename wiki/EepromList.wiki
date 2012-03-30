@@ -36,6 +36,7 @@
    * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_cyan.bin Cyan 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_magenta.bin Magenta 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_yellow.bin Yellow 2000 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/1320%20IMAGE%20UNIT%208496%20pages.bin Imaging Unit 8496 Pages]
 
 *Fuji Xerox DocuPrint C1110*
 
@@ -80,7 +81,13 @@
 
 *Xerox Phaser 6128*
 
-  * [http://xeroxpatrone.googlecode.com/files/6128_black_nonorg.bin Black 3100 Pages]
+  * International
+   * [http://xeroxpatrone.googlecode.com/files/6128_black_nonorg.bin Black 3100 Pages]
+  * UK Version
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Black%20full.bin Black 3100 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Cyan%20full.bin Cyan 3100 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Magenta%20full.bin Magenta 3100 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Yellow%20full.bin Yellow 3100 Pages]
  
 = EEPROMS still missing =
 
