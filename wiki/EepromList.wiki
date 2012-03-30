@@ -45,6 +45,7 @@
   * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_magenta.bin Magenta 2000 Pages]
   * [http://xeroxpatrone.googlecode.com/files/fuji_docuprint_c1110_yellow.bin Yellow 2000 Pages]
 
+
   * [http://xeroxpatrone.googlecode.com/files/C1110%20new%20image%20unit.bin Imaging Unit EEPROM]
 
 *Xerox Phaser 6125*
@@ -85,9 +86,9 @@
    * [http://xeroxpatrone.googlecode.com/files/6128_black_nonorg.bin Black 3100 Pages]
   * UK Version
    * [http://xeroxpatrone.googlecode.com/files/6128%20Black%20full.bin Black 3100 Pages]
-   * [http://xeroxpatrone.googlecode.com/files/6128%20Cyan%20full.bin Cyan 3100 Pages]
-   * [http://xeroxpatrone.googlecode.com/files/6128%20Magenta%20full.bin Magenta 3100 Pages]
-   * [http://xeroxpatrone.googlecode.com/files/6128%20Yellow%20full.bin Yellow 3100 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Cyan%20full.bin Cyan 2500 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Magenta%20full.bin Magenta 2500 Pages]
+   * [http://xeroxpatrone.googlecode.com/files/6128%20Yellow%20full.bin Yellow 2500 Pages]
  
 = EEPROMS still missing =
 
@@ -97,9 +98,10 @@ As you see the list of missing EEPROM dumps is still very long. Please send me y
 
 *Xerox Phaser 6128*
 
-  * Cyan 2500 Pages
-  * Magenta 2500 Pages
-  * Yellow 2500 Pages
+  * International
+   * Cyan 2500 Pages
+   * Magenta 2500 Pages
+   * Yellow 2500 Pages
 
 *DELL 1320c*
 
