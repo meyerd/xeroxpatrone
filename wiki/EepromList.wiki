@@ -37,6 +37,7 @@
    * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_magenta.bin Magenta 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/dell_1320c_usa_2000_pages_yellow.bin Yellow 2000 Pages]
   * [http://xeroxpatrone.googlecode.com/files/1320%20IMAGE%20UNIT%208496%20pages.bin Imaging Unit 8496 Pages]
+  * [http://xeroxpatrone.googlecode.com/files/dell_1320_PDU-ImageUnit.BIN Imaging Unit New PDU]
 
 *Fuji Xerox DocuPrint C1110*
 
