@@ -45,7 +45,7 @@
    * [http://xeroxpatrone.googlecode.com/files/Black_2000_full.bin Black 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/cyan_2000_full.bin Cyan 2000 Pages]
    * [http://xeroxpatrone.googlecode.com/files/magenta_2000_full.bin Magenta 2000 Pages]
-   * [http://xeroxpatrone.googlecode.com/files/yellow_2000_partused.bin Yellow 2000 Pages (partly used)
+   * [http://xeroxpatrone.googlecode.com/files/yellow_2000_partused.bin Yellow 2000 Pages (partly used)]
   * [http://xeroxpatrone.googlecode.com/files/1320%20IMAGE%20UNIT%208496%20pages.bin Imaging Unit 8496 Pages]
   * [http://xeroxpatrone.googlecode.com/files/dell_1320_PDU-ImageUnit.BIN Imaging Unit New PDU]
 
