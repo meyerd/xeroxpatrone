@@ -268,7 +268,7 @@ void SerialAdapterV2::OnWriteClick(wxCommandEvent& event) {
 								goto out_error;
 							}
 							
-								SerialAdapterV2Helper::sendbyte(tmp, xSerialAdapterV2->handle);
+								SerialAdapterV2Helper::sendbyte(buf, xSerialAdapterV2->handle);
 								
 								for(int k = 0; k < 20; ++k) {
 									SerialAdapterV2Helper::delay();
