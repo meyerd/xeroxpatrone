@@ -1,0 +1,3 @@
+# DocuPrint C1618 Imaging Unit #
+
+The C1618 Imaging Unit has also a page counter eeprom, which can be reprogrammed using this original [dump](http://xeroxpatrone.googlecode.com/files/C1618ImageDrum.bin). Also it has been observed (thanks to the person, who pointed that out), that changing the third byte somehow corrupts the eeprom and the printer tries to restore it on the next insert. The resulting dump can be downloaded [here](http://xeroxpatrone.googlecode.com/files/C1618ImageDrum_reinitialized.bin).
