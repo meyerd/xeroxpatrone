@@ -1,37 +1,110 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-
   <head>
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="description" content="Xeroxpatrone : Automatically exported from code.google.com/p/xeroxpatrone">
+    <title>Xeroxpatrone by meyerd</title>
 
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>Xeroxpatrone</title>
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
   </head>
-
   <body>
+    <div class="wrapper">
+      <header>
+        <h1>Xeroxpatrone</h1>
+        <p>Xerox Phaser 6130 Printer Cartridge Chip Reset Tool</p>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/meyerd/xeroxpatrone">View on GitHub</a>
+        <p class="view"><a href="https://github.com/meyerd/xeroxpatrone">View the Project on GitHub <small>meyerd/xeroxpatrone</small></a></p>
 
-          <h1 id="project_title">Xeroxpatrone</h1>
-          <h2 id="project_tagline">Automatically exported from code.google.com/p/xeroxpatrone</h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/meyerd/xeroxpatrone/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/meyerd/xeroxpatrone/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
-
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
+        <ul>
+          <li><a href="https://github.com/meyerd/xeroxpatrone/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/meyerd/xeroxpatrone/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/meyerd/xeroxpatrone">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
         <h3>
+<a id="xeroxpatrone" class="anchor" href="#xeroxpatrone" aria-hidden="true"><span class="octicon octicon-link"></span></a>Xeroxpatrone</h3>
+
+<p>This is a tool for resetting the chip that is included in the Xerox Phaser 6130 Printer Cartridges. Since Xerox wants you to buy a new toner cartridges even if you are able to refill them, they included a little EEPROM microchip to prevent self refilling.</p>
+
+<p>Now you can reset this little microchip inside the cartridge yourself.</p>
+
+<p>****Warning: I think using this will definitely void the warranty!</p>
+
+<p>****UPDATES: Beware, that there might be a bug in the new XeroxpatroneV2 tool when writing chips with the EasyPC adapter. Until that issue is resolved, you might fall back to using the old command line software which also supports the Easy Adapter</p>
+
+<p>****UPDATES: Updated version 2 of the xeroxpatrone-tool. Now has a graphical user interfaces and supports a new usb-only adapter.</p>
+
+<h2>
+<a id="germandeutsch" class="anchor" href="#germandeutsch" aria-hidden="true"><span class="octicon octicon-link"></span></a>German/Deutsch</h2>
+
+<h2>
+<a id="other-printersparts" class="anchor" href="#other-printersparts" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other Printers/Parts</h2>
+
+<p>A list of pointers to pages describing flashing other parts</p>
+
+<h2>
+<a id="eeproms" class="anchor" href="#eeproms" aria-hidden="true"><span class="octicon octicon-link"></span></a>EEPROMs</h2>
+
+<p>Available and missing EEPROM dumps</p>
+
+<h1>
+<a id="using-other-cartridges" class="anchor" href="#using-other-cartridges" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using other cartridges</h1>
+
+<p>Yes you can use 6130 cartridges in your 6140 printer and vice versa. Also Xerox Phaser 6125, Xerox Phaser 6128, Dell 1320c, Dell 2130cn and Dell 2135cn are more or less the same. Read here how it works.</p>
+
+<h1>
+<a id="for-which-printers-does-it-work" class="anchor" href="#for-which-printers-does-it-work" aria-hidden="true"><span class="octicon octicon-link"></span></a>For which Printers does it work?</h1>
+
+<p>It definitely works for the Xerox Phaser 6130. I think it should also work for the Xerox Phaser 6125, Xerox Phaser 6128, Dell 1320c, Dell 2130cn and the Dell 2135cn, since they use the same cartridges. It was just tried out: The Xerox Phaser 6140 uses exactly the same EEPROMS. Dumps for that printer can be found in the download section.</p>
+
+<h1>
+<a id="how-to-do-it" class="anchor" href="#how-to-do-it" aria-hidden="true"><span class="octicon octicon-link"></span></a>How to do it?</h1>
+
+<p>First of all you need to have a i2c adapter for your PC. Something like this (recommended) or this (for the full i2c functionality). You also can download the schematics there and build it yourself. I think you will most likely have to do that since you need some sort of adapter to attach to the tiny pcb where the EEPROM Chip is located (try out something like this).</p>
+
+<p>Then either download a precompiled (sorry, only windows) version of the reset tool. Or build it yourself.</p>
+
+<p>With that tool you can now read out the data on the chip and write the same or, more important, modified data back onto the EEPROM. Use xeroxpatrone --help for further usage instructions.</p>
+
+<p>If you have binary dumps for printers which are not listed on the site please send them.</p>
+
+<h1>
+<a id="easy-pc-adapter" class="anchor" href="#easy-pc-adapter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Easy PC Adapter</h1>
+
+<p>Really easy and cheap to build PC adapter. You will need this executable to read/write your EEPROMS download</p>
+
+<h2>
+<a id="what-else" class="anchor" href="#what-else" aria-hidden="true"><span class="octicon octicon-link"></span></a>What else?</h2>
+
+<p>For effectively resetting a cartridge, you will need some EEPROM image of a full, new cartridge. Maybe I will eventually upload one here, or you have to read one image out yourself.</p>
+
+<h2>
+<a id="missing-dlls-on-windows" class="anchor" href="#missing-dlls-on-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Missing DLLs on Windows</h2>
+
+<p>"MSVCR100.dll missing" or "MSVCP100.dll missing" (Windows)
+You need to install the Microsoft Visual C++ Redistributable, available for Windows x86 and Windows x64.
+Any technical details
+Yes.</p>
+
+<p>The EEPROM chip is simply a M24C02 serial i2c bus eeprom with 2KBit. There are some pull up resistors around, but thats it. You can use any way to read and write on that you want. Just use this information here.</p>
+
+<p>Someone testing it reported the programming went just fine with "JDM-Programmer".</p>
+
+<h2>
+<a id="eeprom-dumps" class="anchor" href="#eeprom-dumps" aria-hidden="true"><span class="octicon octicon-link"></span></a>EEPROM dumps</h2>
+
+<p>I read out some EEPROM dumps from cartridges I own myself (download here). Feel free to use them and if you find something out about the encoding or the contents, maybe how to write a dump-"generator" to generate arbitrary fillings, please contact me.</p>
+
+<p>If you get hold of any new dumps that are missing in the downloads section, please send them to me.</p>
+
+<h3>
 <a id="welcome-to-github-pages" class="anchor" href="#welcome-to-github-pages" aria-hidden="true"><span class="octicon octicon-link"></span></a>Welcome to GitHub Pages.</h3>
 
 <p>This automatic page generator is the easiest way to create beautiful pages for all of your projects. Author your page content here using GitHub Flavored Markdown, select a template crafted by a designer, and publish. After your page is generated, you can check out the new branch:</p>
@@ -63,16 +136,12 @@ $ git checkout gh-pages
 
 <p>Having trouble with Pages? Check out the documentation at <a href="https://help.github.com/pages">https://help.github.com/pages</a> or contact <a href="mailto:support@github.com">support@github.com</a> and we’ll help you sort it out.</p>
       </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">Xeroxpatrone maintained by <a href="https://github.com/meyerd">meyerd</a></p>
-        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/meyerd">meyerd</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
       </footer>
     </div>
-
+    <script src="javascripts/scale.fix.js"></script>
               <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
@@ -83,7 +152,6 @@ $ git checkout gh-pages
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
-
 
   </body>
 </html>
