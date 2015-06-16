@@ -258,6 +258,7 @@ void UsbAdapterKernel::OnWriteClick(wxCommandEvent& event) {
                     }
                 }
                 xInput.Close();
+                usleep(1000);
             } else {
                 wxLogMessage(_T("UsbAdapterKernel: error opening input file '%s'"), xUsbAdapterKernel->xsReadFile.c_str());
                 goto out_error;
